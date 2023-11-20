@@ -39,6 +39,7 @@ const SingleTour = lazy(() => import('../../views/single-tour'));
 const Destinations = lazy(() => import('../../views/destinations'));
 const Restaurants = lazy(() => import('../../views/restaurants'));
 const SingleHotel = lazy(() => import('../../views/single-hotel'));
+const TourBooking = lazy(() => import('../../views/tour-booking'));
 
 // ** Merge Routes
 const Routes = [
@@ -93,6 +94,10 @@ const Routes = [
   {
     path: '/tour/tour-packages/:id',
     element: <SingleTour />,
+  },
+  {
+    path: '/tour/tour-packages/book',
+    element: <TourBooking />,
   },
   {
     path: '/destinations',

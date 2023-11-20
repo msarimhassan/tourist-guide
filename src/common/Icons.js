@@ -9,5 +9,6 @@ import * as FA from 'react-icons/fa';
 import * as GI from 'react-icons/gi';
 import * as CG from 'react-icons/cg';
 import * as IO5 from 'react-icons/io5';
+import * as LU from 'react-icons/lu';
 
-export { AI, BI, RI, MD, FC, BS, TB, FA, GI, CG, IO5 };
+export { AI, BI, RI, MD, FC, BS, TB, FA, GI, CG, IO5, LU };
