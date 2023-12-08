@@ -67,4 +67,13 @@ export default [
     resource: 'restaurants',
     action: 'read',
   },
+
+  {
+    id: 'home',
+    title: 'Tours',
+    icon: <Home size={20} />,
+    navLink: '/tours',
+    resource: 'tours',
+    action: 'read',
+  },
 ];

@@ -1,4 +1,3 @@
-
 import { Banner, CompanyCard } from '../../components';
 import Select from 'react-select';
 

@@ -7,6 +7,9 @@ import HotelCard from './cards/HotelCard';
 import DestinationCard from './cards/DestinationCard';
 import RestaurantsCard from './cards/RestaurantsCard';
 import DynamicBanner from './DynamicBanner';
+import ServiceProviderSignup from './forms/ServiceProviderSignup';
+import HotelAdminSignup from './forms/HotelAdminSignup';
+import UserSignup from './forms/Signup';
 
 export {
   TourCard,
@@ -18,4 +21,7 @@ export {
   DestinationCard,
   RestaurantsCard,
   DynamicBanner,
+  ServiceProviderSignup,
+  HotelAdminSignup,
+  UserSignup,
 };

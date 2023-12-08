@@ -2,9 +2,11 @@ import { Button, Card, Row, Col, Input, CardBody, CardText, CardTitle } from 're
 import Flatpickr from 'react-flatpickr';
 import { Search, Heart, MapPin } from 'react-feather';
 import Avatar from '@components/avatar';
+import BannerImage from '../../assets/images/banners/banner-3.png';
+import Benefitbanner from '../../assets/images/banners/benefit.png';
 
 import Nature from '../../assets/images/cards/Card-1.jpeg';
-import { TourCard, TestimonialCard } from '../../components';
+import { TourCard, TestimonialCard, Banner } from '../../components';
 
 const benefits = [
   {
@@ -64,7 +66,9 @@ const Home = () => {
 
       <div className='banner'>
         <div className='banner-content d-flex align-items-center flex-column'>
-          <h1 style={{ color: 'white' }}>Discover A Beautiful Place With Us</h1>
+          <h1 style={{ color: 'black' }} className='fw-bolder'>
+            Discover A Beautiful Place With Us
+          </h1>
           <p>Make your dreams come true</p>
           <Button className='mt-1' color='primary'>
             Explore Now
@@ -75,16 +79,24 @@ const Home = () => {
       {/* Search Filter */}
 
       <div style={{ marginTop: '-80px' }} className='d-flex justify-content-center'>
-        <Card className='border w-75 p-2 p-sm-5'>
+        <Card className='border w-75 p-2 p-sm-5' style={{ background: '#E5EDF3' }}>
           <Row className='d-flex align-items-center justify-content-center'>
             <Col md={3} className='mt-2 mt-sm-0'>
               <Input placeholder='Destination' />
             </Col>
             <Col md={3} className='mt-2 mt-sm-0'>
-              <Flatpickr className='form-control' placeholder='Start Date' />
+              <Flatpickr
+                style={{ background: 'white' }}
+                className='form-control'
+                placeholder='Start Date'
+              />
             </Col>
             <Col md={3} className='mt-2 mt-sm-0'>
-              <Flatpickr className='form-control' placeholder='End Date' />
+              <Flatpickr
+                style={{ background: 'white' }}
+                className='form-control'
+                placeholder='End Date'
+              />
             </Col>
             <Col md={2} className='mt-2 mt-sm-0'>
               <Input placeholder='Guests' />
@@ -112,7 +124,7 @@ const Home = () => {
                 style={{
                   width: '250px',
                   height: '120px',
-                  background: '#FFCCBB',
+                  background: '#E5EDF3',
                   borderRadius: '80px',
                 }}
                 className='d-flex px-2 align-items-center m-2'
@@ -141,7 +153,7 @@ const Home = () => {
 
       <div>
         <Row className='d-flex align-items-center'>
-          <Col md={6} className='d-flex justify-content-center flex-column align-content-center'>
+          <Col md={6} className='d-flex justify-content-center flex-column align-content-center mt-2'>
             {benefits.map(({ id, color, title, content }) => {
               return (
                 <div className='d-flex align-items-center justify-content-center' key={id}>
@@ -167,8 +179,8 @@ const Home = () => {
               );
             })}
           </Col>
-          <Col className='d-flex justify-content-center' md={6}>
-            <img style={{ borderRadius: '20px' }} src={Nature} height='400px' />
+          <Col className='d-flex justify-content-center mt-2' md={6}>
+            <img  src={Benefitbanner} height='300px' />
           </Col>
         </Row>
       </div>
@@ -187,7 +199,7 @@ const Home = () => {
 
       {/* How it works */}
 
-      <div style={{ backgroundColor: '#FFCCBB' }} className='py-4 mt-5 rounded'>
+      <div style={{ background: '#E5EDF3' }} className='py-4 mt-5 rounded'>
         <h1 className='text-center' style={{ color: 'black' }}>
           How it works
         </h1>
@@ -239,13 +251,15 @@ const Home = () => {
       </div>
 
       {/* News letter */}
-      <div style={{ backgroundColor: '#FFCCBB' }} className='mt-5 py-4 rounded shadow'>
-        <h1 className='text-center' style={{ color: 'black' }}>
-          Your Travel Journey Starts Here
+      <div style={{ background: `url(${BannerImage})` }} className='mt-5 py-4 rounded shadow'>
+        <h1 className='text-center' style={{ color: 'white' }}>
+          Subscribe to our NewsLetter!
         </h1>
         <div className='d-flex justify-content-center align-items-center mt-3'>
           <Input className='w-50' placeholder='Email' size={'small'} />
-          <Button color='primary' className='ms-1'>Subscribe</Button>
+          <Button color='primary' className='ms-1'>
+            Subscribe
+          </Button>
         </div>
       </div>
     </div>

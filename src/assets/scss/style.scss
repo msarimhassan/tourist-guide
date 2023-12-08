@@ -12,7 +12,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 .banner {
   position: relative;
-  background-image: url('../images/banners/banner-1.avif');
+  background-image: url('../images/banners/banner-2.png');
   background-size: cover;
   background-position: center;
   height: 50vh;
@@ -28,7 +28,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Overlay color and opacity */
+  // background: rgba(194, 23, 23, 0.5); /* Overlay color and opacity */
 }
 
 .banner-content {
@@ -36,5 +36,5 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   z-index: 1; /* Ensure the content is on top of the overlay */
   text-align: center;
   padding: 20px;
-  color: #ffffff; /* Text color */
+  color: black; /* Text color */
 }

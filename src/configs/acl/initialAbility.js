@@ -20,6 +20,10 @@ export const initialAbility = [
     action: 'read',
     subject: 'restaurants',
   },
+  {
+    action: 'read',
+    subject: 'tours',
+  },
 ];
 
 export const _ = undefined;
