@@ -10,6 +10,7 @@ import DynamicBanner from './DynamicBanner';
 import ServiceProviderSignup from './forms/ServiceProviderSignup';
 import HotelAdminSignup from './forms/HotelAdminSignup';
 import UserSignup from './forms/Signup';
+import Loader from './Loader';
 
 export {
   TourCard,
@@ -24,4 +25,5 @@ export {
   ServiceProviderSignup,
   HotelAdminSignup,
   UserSignup,
+  Loader,
 };

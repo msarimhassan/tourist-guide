@@ -43,7 +43,7 @@ import './assets/scss/style.scss';
 import * as serviceWorker from './serviceWorker';
 
 // ** Lazy load app
-const LazyApp = lazy(() => import('./App'));
+const LazyApp = lazy(() => import('./AppContext'));
 
 // Ability Imports
 import { AbilityContext } from './utility/context/Can';

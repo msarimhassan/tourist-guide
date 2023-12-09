@@ -1,11 +1,19 @@
 import InputPasswordToggle from '@components/input-password-toggle';
 import { Form, Label, Input, Button } from 'reactstrap';
-import { useFormik,  } from 'formik';
+import { useFormik } from 'formik';
 import { userSignupSchema } from '../../validation';
-
+import { Network, Url } from '../../apiConfiguration';
+import { useLoader, useToast } from '../../hooks';
 const UserSignup = () => {
+  const { setLoader } = useLoader();
+  const { showErrorMessage, showSuccessMessage } = useToast();
+
   const onSubmit = async (data) => {
-    console.log({ data });
+    setLoader(true);
+    const response = await Network.post(Url.customerSignup, data);
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+    showSuccessMessage(response.data);
   };
 
   const initialValues = {
@@ -84,7 +92,7 @@ const UserSignup = () => {
         />
         <ErrorMessage name='phoneNo' />
       </div>
-      <Button color='primary' onClick={handleSubmit} block>
+      <Button color='primary' onClick={() => handleSubmit()} block>
         Sign up
       </Button>
     </Form>

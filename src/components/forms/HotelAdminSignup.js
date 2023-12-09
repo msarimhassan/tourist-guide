@@ -29,7 +29,7 @@ const HotelAdminSignup = () => {
     <Form className='auth-register-form mt-2'>
       <div className='mb-1'>
         <Label className='form-label' for='register-username'>
-          Name
+          Hotel Name
         </Label>
         <Input
           value={values.name}
@@ -37,7 +37,7 @@ const HotelAdminSignup = () => {
           onBlur={handleBlur}
           type='text'
           name='name'
-          placeholder='Enter name'
+          placeholder='Enter hotel name'
           autoFocus
         />
         <ErrorMessage name='name' />

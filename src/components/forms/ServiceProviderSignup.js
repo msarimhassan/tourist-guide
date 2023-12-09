@@ -2,8 +2,13 @@ import InputPasswordToggle from '@components/input-password-toggle';
 import { useFormik } from 'formik';
 import { Form, Label, Input, Button } from 'reactstrap';
 import { serviceProviderSignupSchema } from '../../validation/serviceProviderSignup';
+import { Network, Url, multipartConfig } from '../../apiConfiguration';
+import { useLoader, useToast } from '../../hooks';
 
 const ServiceProviderSignup = () => {
+  const { setLoader } = useLoader();
+  const { showErrorMessage, showSuccessMessage } = useToast();
+
   const initialValues = {
     name: '',
     email: '',
@@ -15,7 +20,33 @@ const ServiceProviderSignup = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log({ data });
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    formData.append('phoneNo', data.phoneNo);
+    formData.append('fbUrl', data.fbUrl);
+    formData.append('instaUrl', data.instaUrl);
+    formData.append('banner', data.banner);
+
+    setLoader(true);
+    const response = await Network.post(
+      Url.companySignup,
+      formData,
+      (
+        await multipartConfig()
+      ).headers
+    );
+
+    setLoader(false);
+
+    // Guard Statement
+    if (!response.ok) return showErrorMessage(response.data)
+
+    showSuccessMessage('Company created')
+
+
   };
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({
@@ -42,7 +73,7 @@ const ServiceProviderSignup = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           name='name'
-          placeholder='Enter name'
+          placeholder='Enter company name'
           autoFocus
         />
         <ErrorMessage name={'name'} />
