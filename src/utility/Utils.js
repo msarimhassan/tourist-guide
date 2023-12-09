@@ -1,14 +1,13 @@
-import { DefaultRoute } from "../router/routes";
+import { DefaultRoute } from '../router/routes';
 
 // ** Checks if an object is empty (returns boolean)
 export const isObjEmpty = (obj) => Object.keys(obj).length === 0;
 
 // ** Returns K format from a number
-export const kFormatter = (num) =>
-  num > 999 ? `${(num / 1000).toFixed(1)}k` : num;
+export const kFormatter = (num) => (num > 999 ? `${(num / 1000).toFixed(1)}k` : num);
 
 // ** Converts HTML to string
-export const htmlToString = (html) => html.replace(/<\/?[^>]+(>|$)/g, "");
+export const htmlToString = (html) => html.replace(/<\/?[^>]+(>|$)/g, '');
 
 // ** Checks if the passed date is today
 const isToday = (date) => {
@@ -31,22 +30,22 @@ const isToday = (date) => {
  */
 export const formatDate = (
   value,
-  formatting = { month: "short", day: "numeric", year: "numeric" }
+  formatting = { month: 'short', day: 'numeric', year: 'numeric' }
 ) => {
   if (!value) return value;
-  return new Intl.DateTimeFormat("en-US", formatting).format(new Date(value));
+  return new Intl.DateTimeFormat('en-US', formatting).format(new Date(value));
 };
 
 // ** Returns short month of passed date
 export const formatDateToMonthShort = (value, toTimeForCurrentDay = true) => {
   const date = new Date(value);
-  let formatting = { month: "short", day: "numeric" };
+  let formatting = { month: 'short', day: 'numeric' };
 
   if (toTimeForCurrentDay && isToday(date)) {
-    formatting = { hour: "numeric", minute: "numeric" };
+    formatting = { hour: 'numeric', minute: 'numeric' };
   }
 
-  return new Intl.DateTimeFormat("en-US", formatting).format(new Date(value));
+  return new Intl.DateTimeFormat('en-US', formatting).format(new Date(value));
 };
 
 /**
@@ -54,8 +53,8 @@ export const formatDateToMonthShort = (value, toTimeForCurrentDay = true) => {
  ** This is completely up to you and how you want to store the token in your frontend application
  *  ? e.g. If you are using cookies to store the application please update this function
  */
-export const isUserLoggedIn = () => localStorage.getItem("userData");
-export const getUserData = () => JSON.parse(localStorage.getItem("userData"));
+export const isUserLoggedIn = () => localStorage.getItem('userData');
+export const getUserData = () => JSON.parse(localStorage.getItem('userData'));
 
 /**
  ** This function is used for demo purpose route navigation
@@ -66,9 +65,9 @@ export const getUserData = () => JSON.parse(localStorage.getItem("userData"));
  * @param {String} userRole Role of user
  */
 export const getHomeRouteForLoggedInUser = (userRole) => {
-  if (userRole === "admin") return DefaultRoute;
-  if (userRole === "client") return "/access-control";
-  return "/login";
+  if (userRole === 'admin') return DefaultRoute;
+  if (userRole === 'client') return '/access-control';
+  return '/login';
 };
 
 // ** React Select Theme Colors
@@ -76,10 +75,47 @@ export const selectThemeColors = (theme) => ({
   ...theme,
   colors: {
     ...theme.colors,
-    primary25: "#7367f01a", // for option hover bg-color
-    primary: "#7367f0", // for selected option bg-color
-    neutral10: "#7367f0", // for tags bg-color
-    neutral20: "#ededed", // for input border-color
-    neutral30: "#ededed", // for input hover border-color
+    primary25: '#7367f01a', // for option hover bg-color
+    primary: '#7367f0', // for selected option bg-color
+    neutral10: '#7367f0', // for tags bg-color
+    neutral20: '#ededed', // for input border-color
+    neutral30: '#ededed', // for input hover border-color
   },
 });
+
+/**
+ * @param {String} role
+ */
+
+export const getUserAbility = (role) => {
+  if (role == 'user')
+    return [
+      {
+        action: 'read',
+        subject: 'home',
+      },
+      {
+        action: 'read',
+        subject: 'tour',
+      },
+      {
+        action: 'read',
+        subject: 'hotel-and-stays',
+      },
+      {
+        action: 'read',
+        subject: 'destination',
+      },
+      {
+        action: 'read',
+        subject: 'restaurants',
+      },
+    ];
+  else if (role == 'company')
+    return [
+      {
+        action: 'read',
+        subject: 'tours',
+      },
+    ];
+};

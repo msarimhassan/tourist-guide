@@ -13,10 +13,12 @@ import Cover from '../assets/images/banners/login-banner.png';
 import '@styles/react/pages/page-authentication.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useLoader, useToast } from '../hooks';
+import { useLoader, useToast, useAuth } from '../hooks';
 import { useTheme } from 'styled-components';
 import { Network, Url } from '../apiConfiguration';
 import Select from 'react-select';
+import { getUserAbility } from '../utility/Utils';
+import { useNavigate } from 'react-router-dom';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email().required(),
@@ -32,7 +34,9 @@ const roles = [
 
 const Login = () => {
   const { setLoader } = useLoader();
+  const { authenticateAppUser } = useAuth();
   const { showErrorMessage, showSuccessMessage } = useToast();
+  const navigate = useNavigate();
 
   const initialValues = {
     email: '',
@@ -46,14 +50,25 @@ const Login = () => {
     else if (role == 'hotel') return Url.hotelLogin;
   };
 
+  const getRoute = (role) => {
+    if (role == 'company') return '/tours';
+    if (role == 'user') return '/';
+  };
+
   const onSubmit = async (data) => {
     const { role, ...payload } = data;
     setLoader(true);
     const response = await Network.post(getApiRoute(data.role), payload);
     setLoader(false);
     if (!response.ok) return showErrorMessage(response.data);
+    authenticateAppUser(response.data.token, {
+      ...response.data.payload,
+      ability: getUserAbility(role),
+    });
 
     showSuccessMessage('Login successfully');
+    navigate(getRoute(role));
+    window.location.reload();
   };
 
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
