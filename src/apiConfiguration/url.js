@@ -1,4 +1,5 @@
 const Url = {
+  // Auth
   customerSignup: 'customers/signup',
   customerLogin: 'customers/signin',
 
@@ -13,6 +14,10 @@ const Url = {
   deleteTour: (id) => `tours/delete/${id}`,
   getSingleTour: (id) => `tours/get/${id}`,
   updateTour: (id) => `tours/update/${id}`,
+
+  // userPanel
+
+  getCompanies: 'companies/list',
 };
 
 export default Url;

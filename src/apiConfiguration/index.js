@@ -1,5 +1,5 @@
 import Network from './network';
 import Url from './url';
-import { multipartConfig } from './configuration';
+import { multipartConfig, config } from './configuration';
 
-export { Network, Url, multipartConfig };
+export { Network, Url, multipartConfig, config };

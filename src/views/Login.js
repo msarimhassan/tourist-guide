@@ -14,8 +14,8 @@ import '@styles/react/pages/page-authentication.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLoader, useToast, useAuth } from '../hooks';
-import { useTheme } from 'styled-components';
-import { Network, Url } from '../apiConfiguration';
+
+import { Network, Url, config } from '../apiConfiguration';
 import Select from 'react-select';
 import { getUserAbility } from '../utility/Utils';
 import { useNavigate } from 'react-router-dom';
@@ -58,7 +58,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     const { role, ...payload } = data;
     setLoader(true);
-    const response = await Network.post(getApiRoute(data.role), payload);
+    const response = await Network.post(getApiRoute(data.role), payload, (await config()).headers);
     setLoader(false);
     if (!response.ok) return showErrorMessage(response.data);
     authenticateAppUser(response.data.token, {

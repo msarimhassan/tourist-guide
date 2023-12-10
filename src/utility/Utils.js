@@ -119,3 +119,7 @@ export const getUserAbility = (role) => {
       },
     ];
 };
+
+export const getImageRoute = (url) => {
+  return `http://localhost:5001/${url}`;
+};

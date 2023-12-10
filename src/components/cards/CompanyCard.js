@@ -1,19 +1,37 @@
-import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle, CardText } from 'reactstrap';
 import { Rating } from 'react-simple-star-rating';
+import { getImageRoute } from '../../utility/Utils';
 
-const CompanyCard = () => {
+const CompanyCard = ({ company }) => {
+  const overlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Black color with 75% opacity
+  };
+
+  const textContainerStyle = {
+    position: 'absolute',
+    bottom: '20px', // Adjust the distance from the bottom as needed
+    left: '20px', // Adjust the distance from the left as needed
+    color: 'white',
+  };
+
   return (
-    <Card style={{ border: 'none', overflow: 'hidden', borderRadius: '0' }}>
-      <img
-        alt='Sample'
-        src='https://picsum.photos/300/200'
-        style={{
-          width: '100%',
-          height: 'auto',
-          display: 'block',
-          borderRadius: '0', // Remove border-radius for a rectangular image
-        }}
+    <Card style={{ height: '400px', position: 'relative' }}>
+      <CardImg
+        src={getImageRoute(company?.banner)}
+        alt='Background Image'
+        style={{ height: '100%', objectFit: 'cover' }}
       />
+      <CardImgOverlay style={overlayStyle}>
+        <div style={textContainerStyle}>
+          <CardTitle tag='h5'>{company?.name}</CardTitle>
+          <CardText>Test Description</CardText>
+        </div>
+      </CardImgOverlay>
     </Card>
   );
 };
