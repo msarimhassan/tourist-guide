@@ -6,6 +6,13 @@ const Url = {
   companyLogin: 'companies/signin',
 
   hotelLogin: 'hotels/signin',
+
+  // tour crud
+  createTour: 'tours/create',
+  getCompanyTours: 'tours/list',
+  deleteTour: (id) => `tours/delete/${id}`,
+  getSingleTour: (id) => `tours/get/${id}`,
+  updateTour: (id) => `tours/update/${id}`,
 };
 
 export default Url;

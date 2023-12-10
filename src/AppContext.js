@@ -1,11 +1,9 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from './components';
 import { LoaderContext, AuthContext } from './context';
 import { keys } from './common';
 
-const LazyApp = lazy(() => import('./App'));
-
-const AppContext = () => {
+const AppContext = ({ children }) => {
   const [appLoading, setAppLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [userToken, setUserToken] = useState(null);
@@ -19,13 +17,12 @@ const AppContext = () => {
       setCurrentUser(JSON.parse(user));
     }
   }, []);
-
   return (
     <>
+      <Loader visible={appLoading} />
       <LoaderContext.Provider value={{ setAppLoading }}>
         <AuthContext.Provider value={{ setCurrentUser, setUserToken, userToken, currentUser }}>
-          <Loader visible={appLoading} />
-          <LazyApp />;
+          {children}
         </AuthContext.Provider>
       </LoaderContext.Provider>
     </>
