@@ -18,6 +18,7 @@ const Url = {
   // userPanel
   getCompanies: 'companies/list',
   getTourByCompanyId: (companyId) => `tours/get-tour-by-company-id/${companyId}`,
+  getTourByTourId: (tourId) => `tours/get-tour-by-id/${tourId}`,
 };
 
 export default Url;

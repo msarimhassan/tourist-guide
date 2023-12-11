@@ -3,8 +3,11 @@ import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 
 import { Heart } from 'react-feather';
 import { getImageRoute } from '../../utility/Utils';
+import { useNavigate } from 'react-router-dom';
 
 const TourCard = ({ tour }) => {
+  const navigate = useNavigate();
+
   return (
     <Card
       className='m-1'
@@ -31,7 +34,13 @@ const TourCard = ({ tour }) => {
       </div>
       <img alt='Sample' src={getImageRoute(tour?.banner)} />
       <CardBody>
-        <CardTitle tag='h5'>{tour?.title}</CardTitle>
+        <CardTitle
+          style={{ cursor: 'pointer' }}
+          tag='h5'
+          onClick={() => navigate(`/tour/tour-packages/${tour?._id}`)}
+        >
+          {tour?.title}
+        </CardTitle>
         <CardText style={{ color: '#317EA7', fontSize: '20px' }}>{tour?.company?.name}</CardText>
 
         {/* <CardText>2 Days | 3 Nights</CardText> */}
