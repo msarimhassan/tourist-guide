@@ -61,9 +61,12 @@ const Login = () => {
     const response = await Network.post(getApiRoute(data.role), payload, (await config()).headers);
     setLoader(false);
     if (!response.ok) return showErrorMessage(response.data);
+
+    const userData = getUserAbility(role);
+
     authenticateAppUser(response.data.token, {
       ...response.data.payload,
-      ability: getUserAbility(role),
+      userData,
     });
 
     showSuccessMessage('Login successfully');

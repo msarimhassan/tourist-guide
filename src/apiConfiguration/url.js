@@ -19,6 +19,14 @@ const Url = {
   getCompanies: 'companies/list',
   getTourByCompanyId: (companyId) => `tours/get-tour-by-company-id/${companyId}`,
   getTourByTourId: (tourId) => `tours/get-tour-by-id/${tourId}`,
+
+  //userBooking
+  createTourBooking: 'tour-bookings/create',
+  getCustomerBooking: 'tour-bookings/get-customer-bookings',
+
+  // companyBookings
+  getBookingsList: 'tour-bookings/list',
+  changeBookingStatus: (bookingId) => `tour-bookings/update/${bookingId}`,
 };
 
 export default Url;

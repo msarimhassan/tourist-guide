@@ -76,4 +76,12 @@ export default [
     resource: 'tours',
     action: 'read',
   },
+  {
+    id: 'bookings',
+    title: 'Bookings',
+    icon: <Home size={20} />,
+    navLink: '/company-bookings',
+    resource: 'company-bookings',
+    action: 'read',
+  },
 ];

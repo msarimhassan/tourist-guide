@@ -89,35 +89,45 @@ export const selectThemeColors = (theme) => ({
 
 export const getUserAbility = (role) => {
   if (role == 'user')
-    return [
-      {
-        action: 'read',
-        subject: 'home',
-      },
-      {
-        action: 'read',
-        subject: 'tour',
-      },
-      {
-        action: 'read',
-        subject: 'hotel-and-stays',
-      },
-      {
-        action: 'read',
-        subject: 'destination',
-      },
-      {
-        action: 'read',
-        subject: 'restaurants',
-      },
-    ];
+    return {
+      role: 'user',
+      ability: [
+        {
+          action: 'read',
+          subject: 'home',
+        },
+        {
+          action: 'read',
+          subject: 'tour',
+        },
+        {
+          action: 'read',
+          subject: 'hotel-and-stays',
+        },
+        {
+          action: 'read',
+          subject: 'destination',
+        },
+        {
+          action: 'read',
+          subject: 'restaurants',
+        },
+      ],
+    };
   else if (role == 'company')
-    return [
-      {
-        action: 'read',
-        subject: 'tours',
-      },
-    ];
+    return {
+      role: 'company',
+      ability: [
+        {
+          action: 'read',
+          subject: 'tours',
+        },
+        {
+          action: 'read',
+          subject: 'company-bookings',
+        },
+      ],
+    };
 };
 
 export const getImageRoute = (url) => {

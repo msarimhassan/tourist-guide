@@ -6,7 +6,7 @@ import { useLoader, useToast } from '../../hooks';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AddTour } from '../../redux/tour';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 
 const Info = ({ label, value }) => {
@@ -26,6 +26,8 @@ const SingleTour = () => {
   const [tour, setTour] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const storedTours = useSelector((state) => state.tour.tours);
 
   const [price, setPrice] = useState([]);
   const [originalPrice, setOriginalPrice] = useState(0);
@@ -53,11 +55,9 @@ const SingleTour = () => {
     const payload = {
       ...tour,
       people,
-      price,
-    };
 
+    };
     dispatch(AddTour(payload));
-    
     showSuccessMessage('Tour added to the booking list');
     navigate('/tour/tour-packages/book');
   };

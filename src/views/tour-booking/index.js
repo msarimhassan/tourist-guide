@@ -5,23 +5,25 @@ import TourSummary from './TourSummary';
 import TourDetails from './TourDetails';
 import PersonalDetails from './PersonalDetails';
 import TourRecipt from './TourReceipt';
+import { useSelector } from 'react-redux';
 
 const TourBooking = () => {
   const ref = useRef(null);
   const [stepper, setStepper] = useState(null);
+  const storedTours = useSelector((state) => state.tour.tours);
 
   const steps = [
     {
       id: 'tour-details',
       title: 'Tour Details',
       subtitle: 'Your Tour Details.',
-      content: <TourDetails stepper={stepper} />,
+      content: <TourDetails tour={storedTours[0]} stepper={stepper} />,
     },
     {
       id: 'personal-info',
       title: 'Personal Info',
       subtitle: 'Add Personal Info',
-      content: <PersonalDetails stepper={stepper} />,
+      content: <PersonalDetails tour={storedTours[0]} stepper={stepper} />,
     },
     {
       id: 'booking-success',
@@ -30,6 +32,7 @@ const TourBooking = () => {
       content: <TourRecipt stepper={stepper} />,
     },
   ];
+
   return (
     <div>
       <Row>
@@ -39,7 +42,7 @@ const TourBooking = () => {
           </div>
         </Col>
         <Col md={4}>
-          <TourSummary />
+          <TourSummary tour={storedTours[0]} />
         </Col>
       </Row>
     </div>
