@@ -1,23 +1,48 @@
-import {Banner, TourCard} from '../../components'
+import { Banner, TourCard } from '../../components';
 import Select from 'react-select';
+import { useLocation } from 'react-router-dom';
+import { useLoader, useToast } from '../../hooks';
+import { Network, Url } from '../../apiConfiguration';
+import { useEffect, useState } from 'react';
+import { Row, Col } from 'reactstrap';
 
 const TourPackages = () => {
-    return (
-      <div>
-        <Banner text={'Tour Packages'} />
-        <div className='d-flex justify-content-end align-items-center mt-3'>
-          <h5 className='me-1'>SortBy:</h5>
-          <Select options={[]} />
-        </div>
+  const { setLoader } = useLoader();
+  const { state } = useLocation();
+  const { showErrorMessage, showSuccessMessage } = useToast();
+  const [tours, setTours] = useState([]);
 
-        <div className='d-flex justify-content-center align-items-center flex-wrap'>
-          {Array(5)
-            .fill(0)
-            .map((key) => {
-              return <TourCard key={key} />;
-            })}
-        </div>
+  const getToursByCompanyID = async () => {
+    setLoader(true);
+    const response = await Network.get(Url.getTourByCompanyId(state?.companyId));
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+
+    setTours(response.data.tour);
+  };
+
+  useEffect(() => {
+    getToursByCompanyID();
+  }, []);
+
+  return (
+    <div>
+      <Banner text={'Tour Packages'} />
+      <div className='d-flex justify-content-end align-items-center mt-3'>
+        <h5 className='me-1'>SortBy:</h5>
+        <Select options={[]} />
       </div>
-    );
-}
-export default TourPackages
+
+      <Row className='justify-content-center'>
+        {tours.map((tour, key) => {
+          return (
+            <Col md={4}>
+              <TourCard tour={tour} key={key} />
+            </Col>
+          );
+        })}
+      </Row>
+    </div>
+  );
+};
+export default TourPackages;

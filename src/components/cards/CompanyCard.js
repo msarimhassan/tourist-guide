@@ -1,8 +1,11 @@
 import { Card, CardImg, CardImgOverlay, CardTitle, CardText } from 'reactstrap';
 import { Rating } from 'react-simple-star-rating';
 import { getImageRoute } from '../../utility/Utils';
+import { useNavigate } from 'react-router-dom';
 
 const CompanyCard = ({ company }) => {
+  const navigate = useNavigate();
+
   const overlayStyle = {
     position: 'absolute',
     top: 0,
@@ -20,7 +23,10 @@ const CompanyCard = ({ company }) => {
   };
 
   return (
-    <Card style={{ height: '400px', position: 'relative' }}>
+    <Card
+      style={{ height: '400px', position: 'relative' }}
+      onClick={() => navigate('/tour/tour-packages', { state: { companyId: company?._id } })}
+    >
       <CardImg
         src={getImageRoute(company?.banner)}
         alt='Background Image'
