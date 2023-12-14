@@ -15,6 +15,10 @@ import Family from '../../assets/images/rooms/family.png';
 import Master from '../../assets/images/rooms/master.png';
 import Premium from '../../assets/images/rooms/premium.png';
 
+import RoomModal from './RoomModal';
+
+import { useState } from 'react';
+
 const hotelData = [Breakfast, Wifi, Parking];
 
 const roomTypes = [
@@ -42,9 +46,20 @@ const roomTypes = [
 
 const SingleHotel = () => {
   const { IO5, MD, FA } = Icons;
+
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+
   return (
     <div>
       <DynamicBanner image={HotelBanner} text={'The Blue Green Vacation Foundation'} />
+
+      <RoomModal
+        key={openModal}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        selectedRoom={selectedRoom}
+      />
 
       {/* <Row className='mt-3'>
         <Col md={8}>
@@ -153,7 +168,15 @@ const SingleHotel = () => {
       <Row>
         {roomTypes.map((type) => {
           return (
-            <Col className='mt-2' style={{ position: 'relative' }} md={6}>
+            <Col
+              className='mt-2'
+              style={{ position: 'relative' }}
+              md={6}
+              onClick={() => {
+                setSelectedRoom(type);
+                setOpenModal(true);
+              }}
+            >
               <img
                 style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '10px' }}
                 src={type.image}

@@ -8,6 +8,8 @@ const Url = {
 
   hotelLogin: 'hotels/signin',
 
+  hotelSignup: 'hotels/signup',
+
   // tour crud
   createTour: 'tours/create',
   getCompanyTours: 'tours/list',
