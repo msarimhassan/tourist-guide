@@ -53,6 +53,7 @@ const Login = () => {
   const getRoute = (role) => {
     if (role == 'company') return '/tours';
     if (role == 'user') return '/';
+    if (role == 'hotel') return '/hotel-management';
   };
 
   const onSubmit = async (data) => {
@@ -66,7 +67,7 @@ const Login = () => {
 
     authenticateAppUser(response.data.token, {
       ...response.data.payload,
-      userData,
+      ...userData,
     });
 
     showSuccessMessage('Login successfully');

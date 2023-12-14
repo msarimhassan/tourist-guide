@@ -84,4 +84,12 @@ export default [
     resource: 'company-bookings',
     action: 'read',
   },
+  {
+    id: 'Hotel Management',
+    title: 'Hotel Management',
+    icon: <Home size={20} />,
+    navLink: '/hotel-management',
+    resource: 'hotel-management',
+    action: 'read',
+  },
 ];

@@ -9,10 +9,10 @@ import { Trash2, Edit2 } from 'react-feather';
 const Tours = () => {
   const navigate = useNavigate();
   const { setLoader } = useLoader();
+  const { showErrorMessage, showSuccessMessage } = useToast();
 
   const [tours, setTours] = useState([]);
 
-  const { showErrorMessage, showSuccessMessage } = useToast();
 
   const getTours = async () => {
     setLoader(true);

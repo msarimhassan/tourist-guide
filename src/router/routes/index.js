@@ -44,6 +44,8 @@ const Tours = lazy(() => import('../../views/tours'));
 const TourForm = lazy(() => import('../../views/tours/TourForm'));
 const UserBookingsTable = lazy(() => import('../../views/user-bookings'));
 const CompanyBookingsTable = lazy(() => import('../../views/company-bookings'));
+const HotelAdmin = lazy(() => import('../../views/hotel-admin'));
+const RoomForm = lazy(() => import('../../views/hotel-admin/RoomForm'));
 
 // ** Merge Routes
 const Routes = [
@@ -153,6 +155,20 @@ const Routes = [
   {
     path: '/company-bookings',
     element: <CompanyBookingsTable />,
+  },
+
+  // Hotel Admin
+  {
+    path: '/hotel-management',
+    element: <HotelAdmin />,
+    meta: {
+      action: 'read',
+      subject: 'hotel-management',
+    },
+  },
+  {
+    path: '/hotel-management/room',
+    element: <RoomForm />,
   },
 ];
 

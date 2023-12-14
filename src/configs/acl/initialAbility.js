@@ -24,6 +24,14 @@ export const initialAbility = [
     action: 'read',
     subject: 'tours',
   },
+  {
+    action: 'read',
+    resource: 'company-bookings',
+  },
+  {
+    action: 'read',
+    resource: 'hotel-management',
+  },
 ];
 
 export const _ = undefined;

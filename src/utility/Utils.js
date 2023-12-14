@@ -128,6 +128,8 @@ export const getUserAbility = (role) => {
         },
       ],
     };
+  else if (role == 'hotel')
+    return { role: 'hotel', ability: [{ action: 'read', subject: 'hotel-management' }] };
 };
 
 export const getImageRoute = (url) => {
