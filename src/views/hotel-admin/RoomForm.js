@@ -34,6 +34,7 @@ const RoomTypes = [
 const RoomForm = () => {
   const { setLoader } = useLoader();
   const { state } = useLocation();
+  const navigate = useNavigate();
   const { showErrorMessage, showSuccessMessage } = useToast();
   const [room, setRoom] = useState(null);
 
@@ -56,14 +57,13 @@ const RoomForm = () => {
 
   const onSubmit = async (data) => {
     const method = state?.mode == 'Add' ? 'post' : 'put';
-
     const apiRoute = state?.mode == 'Add' ? Url.createRoom : Url.updateRoom(state?.roomId);
-
     setLoader(true);
     const response = await Network[method](apiRoute, data, (await config()).headers);
     setLoader(false);
     if (!response.ok) return showErrorMessage(response.data);
     showSuccessMessage(response.data);
+    navigate('/hotel-management');
   };
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({

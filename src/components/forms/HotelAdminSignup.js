@@ -18,6 +18,7 @@ const HotelAdminSignup = () => {
     formData.append('phoneNo', data.phoneNo);
     formData.append('description', data.description);
     formData.append('banner', data.banner);
+    formData.append('location', data.location);
 
     setLoader(true);
     const response = await Network.post(
@@ -43,6 +44,7 @@ const HotelAdminSignup = () => {
     phoneNo: '',
     description: '',
     banner: null,
+    location: '',
   };
 
   const { values, handleSubmit, handleChange, errors, handleBlur, touched } = useFormik({
@@ -73,6 +75,22 @@ const HotelAdminSignup = () => {
         />
         <ErrorMessage name='name' />
       </div>
+      <div className='mb-1'>
+        <Label className='form-label' for='register-username'>
+          Hotel Location
+        </Label>
+        <Input
+          value={values.location}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type='text'
+          name='location'
+          placeholder='Enter hotel location'
+          autoFocus
+        />
+        <ErrorMessage name='location' />
+      </div>
+
       <div className='mb-1'>
         <Label className='form-label' for='register-email'>
           Email

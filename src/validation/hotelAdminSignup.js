@@ -7,4 +7,5 @@ export const hotelAdminSchema = Yup.object().shape({
   phoneNo: Yup.string().required(),
   banner: Yup.mixed().required('Banner is required'),
   description: Yup.string().required(),
+  location: Yup.string().required(),
 });
