@@ -29,6 +29,13 @@ const Url = {
   // companyBookings
   getBookingsList: 'tour-bookings/list',
   changeBookingStatus: (bookingId) => `tour-bookings/update/${bookingId}`,
+
+  // room crud
+  createRoom: 'rooms/create',
+  getRooms: 'rooms/list',
+  deleteRoom: (id) => `rooms/delete/${id}`,
+  getSingleRoom: (id) => `rooms/get-single-room/${id}`,
+  updateRoom: (id) => `rooms/update/${id}`,
 };
 
 export default Url;

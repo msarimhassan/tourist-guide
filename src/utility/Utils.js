@@ -135,3 +135,14 @@ export const getUserAbility = (role) => {
 export const getImageRoute = (url) => {
   return `http://localhost:5001/${url}`;
 };
+
+export const processString = (inputString) => {
+  // Remove hyphens from the string
+  const stringWithoutHyphens = inputString?.replace(/-/g, ' ');
+
+  // Convert the string to uppercase
+  const uppercaseString = stringWithoutHyphens?.toUpperCase();
+
+  // Return the modified string
+  return uppercaseString;
+};
