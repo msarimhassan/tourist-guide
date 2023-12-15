@@ -1,30 +1,60 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Label } from 'reactstrap';
 import { Icons } from '../../common';
 import Flatpickr from 'react-flatpickr';
+import { processString } from '../../utility/Utils';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const RoomModal = ({ openModal, setOpenModal, selectedRoom }) => {
+  const initialValues = {
+    checkoutdate: null,
+    checkindate: null,
+    roomId: selectedRoom?.id,
+  };
+
+  const onSubmit = async (data) => {
+    console.log({ data });
+    setOpenModal(!openModal);
+  };
+
+  const { values, handleChange, handleBlur, handleSubmit, touched, errors } = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema: Yup.object().shape({
+      checkindate: Yup.string().nullable().required(),
+      checkoutdate: Yup.string().nullable().required(),
+    }),
+    enableReinitialize: true,
+  });
+
+  const ErrorMessage = ({ name }) => {
+    if (touched[name]) {
+      return <div className='text-danger'>{errors[name]}</div>;
+    }
+  };
+
   const { FA, FA6 } = Icons;
 
   const roomData = [
     {
       title: 'Bathroom',
       Icon: <FA.FaShower size={20} />,
-      value: 1,
+      value: selectedRoom?.noOfBath,
     },
     {
       title: 'Beds',
       Icon: <FA.FaBed size={20} />,
-      value: 1,
+      value: 2,
     },
     {
       title: 'Guest',
       Icon: <FA6.FaPeopleGroup size={20} />,
-      value: 1,
+      value: selectedRoom?.maxGuest,
     },
     {
       title: 'Area',
       Icon: <FA.FaRuler size={20} />,
-      value: 1,
+      value: selectedRoom?.area,
     },
   ];
 
@@ -49,7 +79,7 @@ const RoomModal = ({ openModal, setOpenModal, selectedRoom }) => {
           }}
         >
           <div className='d-flex align-items-center justify-content-between p-1'>
-            <h2 style={{ color: 'white' }}>{selectedRoom?.type}</h2>
+            <h2 style={{ color: 'white' }}>{processString(selectedRoom?.roomType)}</h2>
             <h2 style={{ color: 'white' }}>PKR {selectedRoom?.price}</h2>
           </div>
         </div>
@@ -57,9 +87,7 @@ const RoomModal = ({ openModal, setOpenModal, selectedRoom }) => {
 
       <ModalBody>
         <h4>Description</h4>
-        Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
-        Brownie carrot cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake
-        cheesecake cookie chocolate cake liquorice.
+        {selectedRoom?.description}
       </ModalBody>
 
       <div className='d-flex align-items-center justify-content-around flex-wrap'>
@@ -80,22 +108,48 @@ const RoomModal = ({ openModal, setOpenModal, selectedRoom }) => {
         <Col md={6}>
           <Label>Check In</Label>
           <Flatpickr
+            name='checkindate'
+            onChange={(date) => {
+              let event = {
+                target: {
+                  name: 'checkindate',
+                  value: date[0],
+                },
+              };
+              handleChange(event);
+            }}
+            onBlur={handleBlur}
+            value={values.checkindate}
             style={{ background: 'white' }}
             className='form-control'
             placeholder='Select Date'
           />
+          <ErrorMessage name='checkindate' />
         </Col>
         <Col md={6}>
           <Label>Checkout</Label>
           <Flatpickr
+            onChange={(date) => {
+              let event = {
+                target: {
+                  name: 'checkoutdate',
+                  value: date[0],
+                },
+              };
+              handleChange(event);
+            }}
+            onBlur={handleBlur}
+            value={values.checkoutdate}
+            name='checkoutdate'
             style={{ background: 'white' }}
             className='form-control'
             placeholder='Select Date'
           />
+          <ErrorMessage name='checkoutdate' />
         </Col>
       </Row>
 
-      <Button className='mx-3 my-2' color='primary' onClick={() => setOpenModal(!openModal)}>
+      <Button className='mx-3 my-2' color='primary' onClick={handleSubmit}>
         Book Now
       </Button>
     </Modal>

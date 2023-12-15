@@ -17,7 +17,11 @@ import Premium from '../../assets/images/rooms/premium.png';
 
 import RoomModal from './RoomModal';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useLoader, useToast } from '../../hooks';
+import { Network, Url } from '../../apiConfiguration';
+import { processString } from '../../utility/Utils';
 
 const hotelData = [Breakfast, Wifi, Parking];
 
@@ -46,9 +50,29 @@ const roomTypes = [
 
 const SingleHotel = () => {
   const { IO5, MD, FA } = Icons;
+  const { setLoader } = useLoader();
+  const { showErrorMessage, showSuccessMessage } = useToast();
 
   const [openModal, setOpenModal] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [rooms, setRooms] = useState([]);
+  const [hotel, setHotel] = useState(null);
+
+  const { id } = useParams();
+
+  const getHotelRooms = async () => {
+    setLoader(true);
+    const response = await Network.get(Url.getHotelRooms(id));
+    setLoader(false);
+    console.log({ response });
+    if (!response.ok) return showErrorMessage(response.data);
+    setHotel(response.data.hotel);
+    setRooms(response.data.rooms);
+  };
+
+  useEffect(() => {
+    getHotelRooms();
+  }, []);
 
   return (
     <div>
@@ -117,21 +141,9 @@ const SingleHotel = () => {
         <Col md={6}>
           <img src={Arrow} style={{ width: '100px' }} />
           <h1 className='mt-2' style={{ color: '#83B5D1' }}>
-            The Blue Green Fountain
+            {hotel?.name}
           </h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.
-          </p>
+          <p>{hotel?.description}</p>
         </Col>
         <Col md={6} className='mt-2'>
           <img
@@ -166,26 +178,26 @@ const SingleHotel = () => {
       </div>
 
       <Row>
-        {roomTypes.map((type) => {
+        {rooms?.map((room) => {
           return (
             <Col
               className='mt-2'
               style={{ position: 'relative' }}
               md={6}
               onClick={() => {
-                setSelectedRoom(type);
+                setSelectedRoom({ ...room, image: Premium });
                 setOpenModal(true);
               }}
             >
               <img
                 style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '10px' }}
-                src={type.image}
+                src={Premium}
               />
               <div style={{ position: 'absolute', top: 0, background: '#F5F5F5', padding: '5px' }}>
-                <h1 style={{ color: '#575757' }}>PKR {type.price}</h1>
+                <h1 style={{ color: '#575757' }}>PKR {room.price}</h1>
               </div>
               <div style={{ position: 'absolute', bottom: 0, padding: '5px' }}>
-                <h1 style={{ color: 'white' }}>{type.type}</h1>
+                <h1 style={{ color: 'white' }}>{processString(room?.roomType)}</h1>
               </div>
             </Col>
           );

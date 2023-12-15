@@ -36,6 +36,11 @@ const Url = {
   deleteRoom: (id) => `rooms/delete/${id}`,
   getSingleRoom: (id) => `rooms/get-single-room/${id}`,
   updateRoom: (id) => `rooms/update/${id}`,
+
+  // room routes on userpanel
+  getHotels: 'hotels/list',
+  getHotelRooms: (hotelId) => `rooms/get-hotel-rooms/${hotelId}`,
+  bookRoom: (hotelId) => `rooms/book-room/${hotelId}`,
 };
 
 export default Url;
