@@ -1,12 +1,14 @@
 import { Button, Card, Row, Col, Input, CardBody, CardText, CardTitle } from 'reactstrap';
 import Flatpickr from 'react-flatpickr';
-import { Search, Heart, MapPin } from 'react-feather';
+import { Search } from 'react-feather';
+import Select from 'react-select';
 import Avatar from '@components/avatar';
 import BannerImage from '../../assets/images/banners/banner-3.png';
 import Benefitbanner from '../../assets/images/banners/benefit.png';
 
 import Nature from '../../assets/images/cards/Card-1.jpeg';
 import { TourCard, TestimonialCard, Banner } from '../../components';
+import { useState } from 'react';
 
 const benefits = [
   {
@@ -59,11 +61,43 @@ const works = [
   },
 ];
 
+
+
+const location = [
+  {
+    label: 'Hunza',
+    value: 'hunza',
+  },
+  {
+    label: 'Skardu',
+    value: 'skardu',
+  },
+  {
+    label: 'Naran Kaghan',
+    value: 'naran kaghan',
+  },
+  {
+    label: 'Fairy Meadows',
+    value: 'fairy meadows',
+  },
+  {
+    label: 'Naltar Valley',
+    value: 'naltar valley',
+  },
+  {
+    label: 'Swat',
+    value: 'swat',
+  },
+];
+
 const Home = () => {
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [destination, setDestination] = useState();
+
   return (
     <div>
       {/* Banner */}
-
       <div className='banner'>
         <div className='banner-content d-flex align-items-center flex-column'>
           <h1 style={{ color: 'black' }} className='fw-bolder'>
@@ -82,7 +116,7 @@ const Home = () => {
         <Card className='border w-75 p-2 p-sm-5' style={{ background: '#E5EDF3' }}>
           <Row className='d-flex align-items-center justify-content-center'>
             <Col md={3} className='mt-2 mt-sm-0'>
-              <Input placeholder='Destination' />
+              <Select options={location} placeholder='Destination' />
             </Col>
             <Col md={3} className='mt-2 mt-sm-0'>
               <Flatpickr
@@ -98,12 +132,13 @@ const Home = () => {
                 placeholder='End Date'
               />
             </Col>
-            <Col md={2} className='mt-2 mt-sm-0'>
-              <Input placeholder='Guests' />
-            </Col>
-            <Col md={1} className='mt-2 mt-sm-0'>
-              <Button color='primary'>
-                <Search size={20} />
+            <Col md={3} className='mt-2 mt-sm-0'>
+              <Button
+                className='w-100 d-flex justify-content-center align-items-center'
+                color='primary'
+              >
+                <div>Search</div>
+                <Search className='ms-1' size={20} />
               </Button>
             </Col>
           </Row>
@@ -116,35 +151,33 @@ const Home = () => {
       <div className='d-flex justify-content-center flex-wrap'>
         {/* Cards */}
 
-        {Array(4)
-          .fill(0)
-          .map(() => {
-            return (
+        {location?.map(({ label }) => {
+          return (
+            <div
+              style={{
+                width: '250px',
+                height: '120px',
+                background: '#E5EDF3',
+                borderRadius: '80px',
+              }}
+              className='d-flex px-2 align-items-center m-2'
+            >
               <div
                 style={{
-                  width: '250px',
-                  height: '120px',
-                  background: '#E5EDF3',
-                  borderRadius: '80px',
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '50%',
+                  overflow: 'hidden',
                 }}
-                className='d-flex px-2 align-items-center m-2'
               >
-                <div
-                  style={{
-                    width: '80px',
-                    height: '80px',
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <img src={Nature} style={{ objectFit: 'cover', height: 'auto', width: '100%' }} />
-                </div>
-                <div className='ms-1'>
-                  <h4>Hunza</h4>
-                </div>
+                <img src={Nature} style={{ objectFit: 'cover', height: 'auto', width: '100%' }} />
               </div>
-            );
-          })}
+              <div className='ms-1'>
+                <h4>{label}</h4>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* benefits of joining us */}
@@ -153,8 +186,11 @@ const Home = () => {
 
       <div>
         <Row className='d-flex align-items-center'>
-          <Col md={6} className='d-flex justify-content-center flex-column align-content-center mt-2'>
-            {benefits.map(({ id, color, title, content }) => {
+          <Col
+            md={6}
+            className='d-flex justify-content-center flex-column align-content-center mt-2'
+          >
+            {benefits?.map(({ id, color, title, content }) => {
               return (
                 <div className='d-flex align-items-center justify-content-center' key={id}>
                   <div style={{ height: '100px', width: '100px' }}>
@@ -180,7 +216,7 @@ const Home = () => {
             })}
           </Col>
           <Col className='d-flex justify-content-center mt-2' md={6}>
-            <img  src={Benefitbanner} height='300px' />
+            <img src={Benefitbanner} height='300px' />
           </Col>
         </Row>
       </div>

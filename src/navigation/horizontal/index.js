@@ -23,14 +23,14 @@ export default [
         resource: 'tour',
         action: 'read',
       },
-      {
-        id: 'Tour packages',
-        title: 'Tour Packages',
-        icon: <DollarSign size={20} />,
-        navLink: '/tour/tour-packages',
-        resource: 'tour',
-        action: 'read',
-      },
+      // {
+      //   id: 'Tour packages',
+      //   title: 'Tour Packages',
+      //   icon: <DollarSign size={20} />,
+      //   navLink: '/tour/tour-packages',
+      //   resource: 'tour',
+      //   action: 'read',
+      // },
       {
         id: 'Tour guides',
         title: 'Tour Guides',
