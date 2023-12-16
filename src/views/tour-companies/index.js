@@ -25,12 +25,8 @@ const TourCompanies = () => {
   return (
     <div>
       <Banner text={'Tour Companies'} />
-      <div className='d-flex justify-content-end align-items-center mt-3'>
-        <h5 className='me-1'>SortBy:</h5>
-        <Select options={[]} />
-      </div>
-
-      <Row>
+     
+      <Row className='mt-5'>
         {companies?.map((company, key) => {
           return (
             <Col md={4}>

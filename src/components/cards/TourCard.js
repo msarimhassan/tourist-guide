@@ -1,12 +1,17 @@
 import { Rating } from 'react-simple-star-rating';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
+import { MapPin } from 'react-feather';
+import { useLoader, useToast } from '../../hooks';
+import { Icons } from '../../common';
 
 import { Heart } from 'react-feather';
 import { getImageRoute } from '../../utility/Utils';
 import { useNavigate } from 'react-router-dom';
+import { Network, Url, config } from '../../apiConfiguration';
 
-const TourCard = ({ tour }) => {
+const TourCard = ({ tour, addFavourite, isFavourite, removeFavourite }) => {
   const navigate = useNavigate();
+  const { FA } = Icons;
 
   return (
     <Card
@@ -31,12 +36,39 @@ const TourCard = ({ tour }) => {
       </div>
 
       <div style={{ position: 'absolute', right: 10, top: 10, color: 'white' }}>
-        <Heart size={20} />
+        {isFavourite ? (
+          <FA.FaHeart
+            size={20}
+            onClick={(e) => {
+              e.stopPropagation();
+              removeFavourite(tour?._id);
+            }}
+          />
+        ) : (
+          <Heart
+            size={20}
+            onClick={(e) => {
+              e.stopPropagation();
+              addFavourite(tour?._id);
+            }}
+          />
+        )}
       </div>
       <img alt='Sample' src={getImageRoute(tour?.banner)} />
       <CardBody>
         <CardTitle style={{ cursor: 'pointer' }} tag='h5'>
           {tour?.title}
+        </CardTitle>
+        <CardTitle
+          style={{
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          tag='h5'
+        >
+          <MapPin />
+          <div className='ms-1'>{tour?.location}</div>
         </CardTitle>
         <CardText style={{ color: '#317EA7', fontSize: '20px' }}>{tour?.company?.name}</CardText>
 

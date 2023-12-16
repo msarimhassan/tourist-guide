@@ -41,6 +41,11 @@ const Url = {
   getHotels: 'hotels/list',
   getHotelRooms: (hotelId) => `rooms/get-hotel-rooms/${hotelId}`,
   bookRoom: 'rooms/book-room',
+
+  // get Favourites tours
+  getFavourites: 'tour-favourites/list',
+  addToFavourite: 'tour-favourites/create',
+  removeFavourite: (tourId) => `tour-favourites/delete/${tourId}`,
 };
 
 export default Url;
