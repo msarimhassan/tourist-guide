@@ -40,7 +40,7 @@ const Url = {
   // room routes on userpanel
   getHotels: 'hotels/list',
   getHotelRooms: (hotelId) => `rooms/get-hotel-rooms/${hotelId}`,
-  bookRoom: (hotelId) => `rooms/book-room/${hotelId}`,
+  bookRoom: 'rooms/book-room',
 };
 
 export default Url;
