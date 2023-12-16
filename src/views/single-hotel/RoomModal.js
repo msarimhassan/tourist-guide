@@ -4,17 +4,31 @@ import Flatpickr from 'react-flatpickr';
 import { processString } from '../../utility/Utils';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import { useLoader, useToast } from '../../hooks';
+import { Network, Url, config } from '../../apiConfiguration';
 const RoomModal = ({ openModal, setOpenModal, selectedRoom }) => {
+  const { setLoader } = useLoader();
+  const { showErrorMessage, showSuccessMessage } = useToast();
+
   const initialValues = {
     checkoutdate: null,
     checkindate: null,
-    roomId: selectedRoom?.id,
+    roomId: selectedRoom?._id,
   };
 
   const onSubmit = async (data) => {
-    console.log({ data });
-    setOpenModal(!openModal);
+    setLoader(true);
+
+    const payload = {
+      ...data,
+      roomId: selectedRoom?._id,
+    };
+
+    const response = await Network.post(Url.bookRoom, payload, (await config()).headers);
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+    showSuccessMessage(response.data);
+    await setOpenModal(!openModal);
   };
 
   const { values, handleChange, handleBlur, handleSubmit, touched, errors } = useFormik({

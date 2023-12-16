@@ -50,28 +50,34 @@ import { AbilityContext } from './utility/context/Can';
 import ability from './configs/acl/ability';
 
 import AppContext from './AppContext';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+let persistor = persistStore(store);
 
 const Application = () => {
   return (
     <>
       <BrowserRouter>
         <Provider store={store}>
-          <Suspense fallback={<Spinner />}>
-            <AbilityContext.Provider value={ability}>
-              <AppContext>
-                <ThemeContext>
-                  <LazyApp />
-                  <Toaster
-                    position={themeConfig.layout.toastPosition}
-                    toastOptions={{ className: 'react-hot-toast' }}
-                  />
-                </ThemeContext>
-              </AppContext>
-            </AbilityContext.Provider>
-          </Suspense>
+          <PersistGate persistor={persistor}>
+            <Suspense fallback={<Spinner />}>
+              <AbilityContext.Provider value={ability}>
+                <AppContext>
+                  <ThemeContext>
+                    <LazyApp />
+                    <Toaster
+                      position={themeConfig.layout.toastPosition}
+                      toastOptions={{ className: 'react-hot-toast' }}
+                    />
+                  </ThemeContext>
+                </AppContext>
+              </AbilityContext.Provider>
+            </Suspense>
+          </PersistGate>
         </Provider>
       </BrowserRouter>
     </>
