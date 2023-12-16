@@ -14,6 +14,7 @@ const TourCard = ({ tour }) => {
       style={{
         width: '25rem',
       }}
+      onClick={() => navigate(`/tour/tour-packages/${tour?._id}`)}
     >
       <div
         style={{
@@ -34,11 +35,7 @@ const TourCard = ({ tour }) => {
       </div>
       <img alt='Sample' src={getImageRoute(tour?.banner)} />
       <CardBody>
-        <CardTitle
-          style={{ cursor: 'pointer' }}
-          tag='h5'
-          onClick={() => navigate(`/tour/tour-packages/${tour?._id}`)}
-        >
+        <CardTitle style={{ cursor: 'pointer' }} tag='h5'>
           {tour?.title}
         </CardTitle>
         <CardText style={{ color: '#317EA7', fontSize: '20px' }}>{tour?.company?.name}</CardText>

@@ -55,7 +55,6 @@ const SingleTour = () => {
     const payload = {
       ...tour,
       people,
-
     };
     dispatch(AddTour(payload));
     showSuccessMessage('Tour added to the booking list');
@@ -126,6 +125,7 @@ const SingleTour = () => {
             </div>
             <div className='px-5 py-2'>
               <div className='mt-2'>
+                <Label>No of People</Label>
                 <Input
                   value={people}
                   type='number'
