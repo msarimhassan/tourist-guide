@@ -1,6 +1,7 @@
 import { Input, Row, Col, Button } from 'reactstrap';
 import { useAuth, useLoader, useToast } from '../../hooks';
 import { Network, Url } from '../../apiConfiguration';
+import { removeTour } from '../../redux/tour';
 
 const PersonalDetails = ({ stepper, tour }) => {
   const { currentUser } = useAuth();

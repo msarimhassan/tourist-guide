@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import Wizard from '@components/wizard';
-import { Button, Row, Col } from 'reactstrap';
+import {  Row, Col } from 'reactstrap';
 import TourSummary from './TourSummary';
 import TourDetails from './TourDetails';
 import PersonalDetails from './PersonalDetails';

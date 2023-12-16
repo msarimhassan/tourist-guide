@@ -5,7 +5,7 @@ import { Network, Url } from '../../apiConfiguration';
 import { useLoader, useToast } from '../../hooks';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { AddTour } from '../../redux/tour';
+import { AddTour, removeTour } from '../../redux/tour';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 
@@ -29,6 +29,8 @@ const SingleTour = () => {
 
   const storedTours = useSelector((state) => state.tour.tours);
 
+  console.log({ storedTours });
+
   const [price, setPrice] = useState([]);
   const [originalPrice, setOriginalPrice] = useState(0);
   const [people, setPeople] = useState(1);
@@ -51,6 +53,8 @@ const SingleTour = () => {
 
   const bookTour = () => {
     if (people == 0) return showErrorMessage('Please enter number of people');
+
+    dispatch(removeTour());
 
     const payload = {
       ...tour,

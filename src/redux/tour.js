@@ -9,9 +9,13 @@ export const tourSlice = createSlice({
     AddTour: (state, action) => {
       state.tours.push(action.payload);
     },
+
+    removeTour: (state, action) => {
+      state.tours = [];
+    },
   },
 });
 
-export const { AddTour } = tourSlice.actions;
+export const { AddTour, removeTour } = tourSlice.actions;
 
 export default tourSlice.reducer;
