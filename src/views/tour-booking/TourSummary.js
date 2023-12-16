@@ -47,9 +47,6 @@ const TourSummary = ({ tour }) => {
             <CardText className='fw-bold lead'>{tour?.price * tour?.people}Rs</CardText>
           </div>
         </div>
-        <Button className='w-100 mt-2' color='primary'>
-          Book Now
-        </Button>
       </CardBody>
     </Card>
   );
