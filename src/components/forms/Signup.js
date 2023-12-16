@@ -2,7 +2,7 @@ import InputPasswordToggle from '@components/input-password-toggle';
 import { Form, Label, Input, Button } from 'reactstrap';
 import { useFormik } from 'formik';
 import { userSignupSchema } from '../../validation';
-import { Network, Url } from '../../apiConfiguration';
+import { Network, Url, config } from '../../apiConfiguration';
 import { useLoader, useToast } from '../../hooks';
 const UserSignup = () => {
   const { setLoader } = useLoader();
@@ -10,7 +10,7 @@ const UserSignup = () => {
 
   const onSubmit = async (data) => {
     setLoader(true);
-    const response = await Network.post(Url.customerSignup, data);
+    const response = await Network.post(Url.customerSignup, data, (await config()).headers);
     setLoader(false);
     if (!response.ok) return showErrorMessage(response.data);
     showSuccessMessage(response.data);
