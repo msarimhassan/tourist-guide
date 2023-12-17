@@ -42,12 +42,12 @@ const UserDropdown = () => {
         <Avatar img={defaultAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to='/' onClick={(e) => e.preventDefault()}>
+        <DropdownItem tag={Link} to='/manage-user'>
           <User size={14} className='me-75' />
           <span className='align-middle'>Manage Account</span>
         </DropdownItem>
         <DropdownItem divider />
-        <DropdownItem tag={Link} to='/favourites' >
+        <DropdownItem tag={Link} to='/favourites'>
           <Heart size={14} className='me-75' />
           <span className='align-middle'>Favourites</span>
         </DropdownItem>
