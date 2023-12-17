@@ -5,7 +5,7 @@ import { useLoader, useToast } from '../../hooks';
 import { Network, Url, config } from '../../apiConfiguration';
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'reactstrap';
-import tour from '../../redux/tour';
+
 
 const TourPackages = () => {
   const { setLoader } = useLoader();
@@ -66,7 +66,6 @@ const TourPackages = () => {
       (tour) => tour?.location?.toUpperCase() == location?.toUpperCase()
     );
 
-    console.log({ foundTours });
 
     setFilteredTours(foundTours);
   };

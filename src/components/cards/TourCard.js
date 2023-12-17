@@ -7,7 +7,6 @@ import { Icons } from '../../common';
 import { Heart } from 'react-feather';
 import { getImageRoute } from '../../utility/Utils';
 import { useNavigate } from 'react-router-dom';
-import { Network, Url, config } from '../../apiConfiguration';
 
 const TourCard = ({ tour, addFavourite, isFavourite, removeFavourite }) => {
   const navigate = useNavigate();

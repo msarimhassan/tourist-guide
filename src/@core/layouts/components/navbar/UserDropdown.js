@@ -14,6 +14,7 @@ import {
   CreditCard,
   HelpCircle,
   Power,
+  Heart,
 } from 'react-feather';
 
 // ** Reactstrap Imports
@@ -21,8 +22,11 @@ import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from
 
 // ** Default Avatar Image
 import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg';
+import { useAuth } from '../../../../hooks';
 
 const UserDropdown = () => {
+  const { currentUser } = useAuth();
+
   return (
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
       <DropdownToggle
@@ -32,20 +36,22 @@ const UserDropdown = () => {
         onClick={(e) => e.preventDefault()}
       >
         <div className='user-nav d-sm-flex d-none'>
-          <span className='user-name fw-bold'>John Doe</span>
-          <span className='user-status'>Admin</span>
+          <span className='user-name fw-bold'>{currentUser?.name}</span>
+          <span className='user-status'>{currentUser?.role}</span>
         </div>
         <Avatar img={defaultAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu end>
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <User size={14} className="me-75" />
-          <span className="align-middle">Profile</span>
-        </DropdownItem> */}
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <Mail size={14} className="me-75" />
-          <span className="align-middle">Inbox</span>
-        </DropdownItem>  */}
+        <DropdownItem tag={Link} to='/' onClick={(e) => e.preventDefault()}>
+          <User size={14} className='me-75' />
+          <span className='align-middle'>Manage Account</span>
+        </DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem tag={Link} to='/favourites' >
+          <Heart size={14} className='me-75' />
+          <span className='align-middle'>Favourites</span>
+        </DropdownItem>
+        <DropdownItem divider />
         <DropdownItem tag={Link} to='/user-bookings'>
           <CheckSquare size={14} className='me-75' />
           <span className='align-middle'>Bookings</span>
