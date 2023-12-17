@@ -20,8 +20,7 @@ const ManageUser = () => {
     const response = await Network.put(Url.updateUser, data);
     setLoader(false);
     if (!response.ok) return showErrorMessage(response.data);
-    console.log({ response });
-
+   
     authenticateAppUser(userToken, { ...currentUser, ...response.data });
 
      showSuccessMessage('User updated');

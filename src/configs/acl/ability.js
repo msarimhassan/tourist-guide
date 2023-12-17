@@ -8,7 +8,7 @@ import { keys } from '../../common';
 // ! Anyone can update localStorage so be careful and please update this
 const userData = JSON.parse(localStorage.getItem(keys.user));
 
-console.log({ userData });
+
 
 const existingAbility = userData ? userData.ability : null;
 
