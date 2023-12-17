@@ -57,6 +57,15 @@ const UserDropdown = () => {
     );
   };
 
+  const HotelOptions = () => {
+    return (
+      <DropdownItem tag={Link} to='/manage-hotel'>
+        <User size={14} className='me-75' />
+        <span className='align-middle'>Manage Account</span>
+      </DropdownItem>
+    );
+  };
+
   return (
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
       <DropdownToggle
@@ -72,7 +81,13 @@ const UserDropdown = () => {
         <Avatar img={defaultAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu end>
-        {currentUser?.role == 'user' ? <UserOptions /> : <CompanyOptions />}
+        {currentUser?.role == 'user' ? (
+          <UserOptions />
+        ) : currentUser?.role == 'company' ? (
+          <CompanyOptions />
+        ) : (
+          <HotelOptions />
+        )}
 
         {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <MessageSquare size={14} className="me-75" />

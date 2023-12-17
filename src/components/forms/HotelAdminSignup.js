@@ -145,6 +145,7 @@ const HotelAdminSignup = () => {
           Phone Number
         </Label>
         <Input
+          value={values.phoneNo}
           type='text'
           onChange={handleChange}
           onBlur={handleBlur}
@@ -158,6 +159,7 @@ const HotelAdminSignup = () => {
           Description
         </Label>
         <Input
+          value={values.description}
           name='description'
           type='textarea'
           onChange={handleChange}

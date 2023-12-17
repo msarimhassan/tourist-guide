@@ -54,6 +54,9 @@ const Url = {
   //update app user
 
   updateUser: 'customers/update',
+
+  //update Hotel details
+  updateHotel: 'hotels/update',
 };
 
 export default Url;
