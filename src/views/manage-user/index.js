@@ -2,9 +2,10 @@ import { Input, Row, Col, Button } from 'reactstrap';
 import { useAuth, useLoader, useToast } from '../../hooks';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Network, Url } from '../../apiConfiguration';
 
 const ManageUser = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, userToken, authenticateAppUser } = useAuth();
   const { setLoader } = useLoader();
   const { showErrorMessage, showSuccessMessage } = useToast();
 
@@ -15,7 +16,15 @@ const ManageUser = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log({ data });
+    setLoader(true);
+    const response = await Network.put(Url.updateUser, data);
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+    console.log({ response });
+
+    authenticateAppUser(userToken, { ...currentUser, ...response.data });
+
+     showSuccessMessage('User updated');
   };
 
   const { values, handleChange, handleSubmit, handleBlur, touched, errors } = useFormik({
@@ -58,13 +67,14 @@ const ManageUser = () => {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
+            disabled
           />
           <ErrorMessage name={'email'} />
         </Col>
         <Col md={6} className='mt-2'>
           <Input
             placeholder='Phone No'
-            name='phone_no'
+            name='phoneNo'
             value={values.phoneNo}
             onChange={handleChange}
             onBlur={handleBlur}

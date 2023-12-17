@@ -11,7 +11,7 @@ const useAuth = () => {
     setCurrentUser(appUser);
   };
 
-  return { authenticateAppUser, currentUser };
+  return { authenticateAppUser, currentUser, userToken };
 };
 
 export default useAuth;

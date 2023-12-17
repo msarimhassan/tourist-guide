@@ -50,6 +50,10 @@ const Url = {
   // search tours
   searchTours: (start_date, end_date, location) =>
     `tours/search?start_date=${start_date}&end_date=${end_date}&location=${location}`,
+
+  //update app user
+
+  updateUser: 'customers/update',
 };
 
 export default Url;

@@ -49,6 +49,7 @@ const RoomForm = lazy(() => import('../../views/hotel-admin/RoomForm'));
 const SearchTours = lazy(() => import('../../views/search-tours'));
 const Favourites = lazy(() => import('../../views/favourites'));
 const ManageUsers = lazy(() => import('../../views/manage-user'));
+const ManageCompany = lazy(() => import('../../views/manage-company'));
 
 // ** Merge Routes
 const Routes = [
@@ -184,6 +185,10 @@ const Routes = [
   {
     path: '/manage-user',
     element: <ManageUsers />,
+  },
+  {
+    path: '/manage-company',
+    element: <ManageCompany />,
   },
 ];
 

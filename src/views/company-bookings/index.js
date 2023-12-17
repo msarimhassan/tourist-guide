@@ -62,7 +62,7 @@ const CompanyBookings = () => {
             onClick={() => changeBookingStatus(row?._id)}
             disabled={row.status == 'approved'}
           >
-            Change Status
+            Accept
           </Button>
         );
       },

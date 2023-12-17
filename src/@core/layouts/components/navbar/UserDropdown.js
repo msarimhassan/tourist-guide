@@ -27,6 +27,36 @@ import { useAuth } from '../../../../hooks';
 const UserDropdown = () => {
   const { currentUser } = useAuth();
 
+  const UserOptions = () => {
+    return (
+      <>
+        <DropdownItem tag={Link} to='/manage-user'>
+          <User size={14} className='me-75' />
+          <span className='align-middle'>Manage Account</span>
+        </DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem tag={Link} to='/favourites'>
+          <Heart size={14} className='me-75' />
+          <span className='align-middle'>Favourites</span>
+        </DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem tag={Link} to='/user-bookings'>
+          <CheckSquare size={14} className='me-75' />
+          <span className='align-middle'>Bookings</span>
+        </DropdownItem>
+      </>
+    );
+  };
+
+  const CompanyOptions = () => {
+    return (
+      <DropdownItem tag={Link} to='/manage-company'>
+        <User size={14} className='me-75' />
+        <span className='align-middle'>Manage Account</span>
+      </DropdownItem>
+    );
+  };
+
   return (
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
       <DropdownToggle
@@ -42,20 +72,8 @@ const UserDropdown = () => {
         <Avatar img={defaultAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to='/manage-user'>
-          <User size={14} className='me-75' />
-          <span className='align-middle'>Manage Account</span>
-        </DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem tag={Link} to='/favourites'>
-          <Heart size={14} className='me-75' />
-          <span className='align-middle'>Favourites</span>
-        </DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem tag={Link} to='/user-bookings'>
-          <CheckSquare size={14} className='me-75' />
-          <span className='align-middle'>Bookings</span>
-        </DropdownItem>
+        {currentUser?.role == 'user' ? <UserOptions /> : <CompanyOptions />}
+
         {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <MessageSquare size={14} className="me-75" />
           <span className="align-middle">Chats</span>
