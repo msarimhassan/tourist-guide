@@ -12,7 +12,7 @@ const CompanyCard = ({ company }) => {
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Black color with 75% opacity
+    backgroundColor: 'rgba(0, 0, 0, 0.25)', // Black color with 75% opacity
   };
 
   const textContainerStyle = {
