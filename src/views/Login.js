@@ -8,7 +8,7 @@ import Logo from '../assets/images/logo/logo.png';
 
 // ** Reactstrap Imports
 import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap';
-import Cover from '../assets/images/banners/login-banner.png';
+import Cover from '../assets/images/pages/Login.jpg';
 
 // ** Styles
 import '@styles/react/pages/page-authentication.scss';
@@ -95,8 +95,13 @@ const Login = () => {
           <img style={{ width: '250px' }} src={Logo} />
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5 bg-white' lg='8' sm='12'>
-          <div className='w-100  d-lg-flex align-items-center justify-content-center px-5'>
-            <img className='img-fluid' src={Cover} alt='Login Cover' />
+          <div className='w-100  d-lg-flex align-items-center justify-content-center '>
+            <img
+              className='img-fluid'
+              style={{ width: '100%', height: '100%' }}
+              src={Cover}
+              alt='Login Cover'
+            />
           </div>
         </Col>
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
