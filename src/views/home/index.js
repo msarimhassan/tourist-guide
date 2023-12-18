@@ -6,8 +6,14 @@ import Avatar from '@components/avatar';
 import BannerImage from '../../assets/images/banners/banner-3.png';
 import Benefitbanner from '../../assets/images/banners/benefit.png';
 
-import Nature from '../../assets/images/cards/Card-1.jpeg';
-import { TourCard, TestimonialCard, Banner, Carousel } from '../../components';
+import {
+  TourCard,
+  TestimonialCard,
+  Banner,
+  Carousel,
+  SliderComponent,
+  LocationSlide,
+} from '../../components';
 import { useState } from 'react';
 
 const benefits = [
@@ -150,36 +156,12 @@ const Home = () => {
       {/* Suggestions for Discovery */}
 
       <h1 className='text-center mt-5'>Suggestions for discovery</h1>
-      <div className='d-flex justify-content-center flex-wrap'>
-        {/* Cards */}
-
-        {location?.map(({ label }) => {
-          return (
-            <div
-              style={{
-                width: '250px',
-                height: '120px',
-                background: '#E5EDF3',
-                borderRadius: '80px',
-              }}
-              className='d-flex px-2 align-items-center m-2'
-            >
-              <div
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                }}
-              >
-                <img src={Nature} style={{ objectFit: 'cover', height: 'auto', width: '100%' }} />
-              </div>
-              <div className='ms-1'>
-                <h4>{label}</h4>
-              </div>
-            </div>
-          );
-        })}
+      <div>
+        <SliderComponent>
+          {location.map(({ label }) => (
+            <LocationSlide label={label} />
+          ))}
+        </SliderComponent>
       </div>
 
       {/* benefits of joining us */}

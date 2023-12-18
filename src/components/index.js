@@ -12,6 +12,8 @@ import HotelAdminSignup from './forms/HotelAdminSignup';
 import UserSignup from './forms/Signup';
 import Loader from './Loader';
 import Carousel from './carousel';
+import SliderComponent from './slider';
+import LocationSlide from './slides/LocationSlide';
 
 export {
   TourCard,
@@ -28,4 +30,6 @@ export {
   UserSignup,
   Loader,
   Carousel,
+  SliderComponent,
+  LocationSlide,
 };
