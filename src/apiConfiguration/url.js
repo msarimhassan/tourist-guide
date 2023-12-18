@@ -62,6 +62,9 @@ const Url = {
 
   //update Hotel details
   updateHotel: 'hotels/update',
+
+  addComment: 'comment/add-comment',
+  getComments: 'comment/list',
 };
 
 export default Url;

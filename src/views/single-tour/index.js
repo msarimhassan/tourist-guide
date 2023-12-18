@@ -8,17 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { AddTour, removeTour } from '../../redux/tour';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-
-const Info = ({ label, value }) => {
-  return (
-    <Row className='justify-content-center'>
-      <Col md={6} className='font-weight-bold'>
-        <h4> {label}</h4>
-      </Col>
-      <Col md={6}>{value}</Col>
-    </Row>
-  );
-};
+import Avatar from '@components/avatar';
 
 const SingleTour = () => {
   const { setLoader } = useLoader();
@@ -27,11 +17,14 @@ const SingleTour = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [comment, setComment] = useState(null);
+
   const storedTours = useSelector((state) => state.tour.tours);
 
   const [price, setPrice] = useState([]);
   const [originalPrice, setOriginalPrice] = useState(0);
   const [people, setPeople] = useState(1);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   const getTourByTourId = async () => {
@@ -63,8 +56,30 @@ const SingleTour = () => {
     navigate('/tour/tour-packages/book');
   };
 
+  const submitComment = async () => {
+    setLoader(true);
+    const response = await Network.post(Url.addComment, {
+      tourId: tour?._id,
+      comment,
+    });
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+    showSuccessMessage(response.data);
+    setComment(null);
+    getComments();
+  };
+
+  const getComments = async () => {
+    setLoader(true);
+    const response = await Network.post(Url.getComments, { tourId: id });
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+    setComments(response.data);
+  };
+
   useEffect(() => {
     getTourByTourId();
+    getComments();
   }, []);
 
   return (
@@ -132,6 +147,44 @@ const SingleTour = () => {
               <h6>Travel Insurance</h6>
             </CardBody>
           </Card>
+
+          <Row>
+            <Col md={12}>
+              {comments.map(({ comment, userId }) => (
+                <div className='m-2 d-flex  align-items-center'>
+                  <Avatar
+                    color={'light-primary'}
+                    style={{
+                      height: '40px',
+                      width: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                    content={userId?.name?.slice(0, 2)}
+                  />
+                  <Input className='w-50 ms-2' value={comment} disabled />
+                </div>
+              ))}
+            </Col>
+            <h1 className='mt-5'>Leave a Reply</h1>
+            <Col md={12} className='mt-1'>
+              <Input
+                value={comment}
+                type='textarea'
+                placeholder='Comment'
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <Button
+                color='primary'
+                onClick={() => submitComment()}
+                className='mt-2'
+                disabled={comment == null || comment == ''}
+              >
+                Submit
+              </Button>
+            </Col>
+          </Row>
         </Col>
         <Col md={4}>
           <Card>
