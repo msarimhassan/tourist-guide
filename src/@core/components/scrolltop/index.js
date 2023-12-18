@@ -1,8 +1,8 @@
 // ** React Imports
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // ** Third Party Components
-import Proptypes from "prop-types";
+import Proptypes from 'prop-types';
 
 const ScrollTop = (props) => {
   // ** Props
@@ -13,7 +13,7 @@ const ScrollTop = (props) => {
 
   useEffect(() => {
     if (window) {
-      window.addEventListener("scroll", () => {
+      window.addEventListener('scroll', () => {
         if (window.pageYOffset >= showOffset) {
           setVisible(true);
         } else {
@@ -29,7 +29,7 @@ const ScrollTop = (props) => {
 
   return (
     visible && (
-      <div className="scroll-to-top" onClick={handleScrollToTop} {...rest}>
+      <div className='scroll-to-top' onClick={handleScrollToTop} {...rest}>
         {children}
       </div>
     )
@@ -42,9 +42,9 @@ export default ScrollTop;
 ScrollTop.propTypes = {
   showOffset: Proptypes.number,
   children: Proptypes.any.isRequired,
-  scrollBehaviour: Proptypes.oneOf(["smooth", "instant", "auto"]),
+  scrollBehaviour: Proptypes.oneOf(['smooth', 'instant', 'auto']),
 };
 
 ScrollTop.defaultProps = {
-  scrollBehaviour: "smooth",
+  scrollBehaviour: 'smooth',
 };

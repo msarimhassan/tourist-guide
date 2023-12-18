@@ -179,8 +179,9 @@ const Home = () => {
             </Col>
             <Col md={3} className='mt-2 mt-sm-0'>
               <Button
+                color='#F97150'
+                style={{ background: '#F97150', zIndex: 1, color: 'white' }}
                 className='w-100 d-flex justify-content-center align-items-center'
-                color='primary'
                 onClick={() => search()}
               >
                 <div>Search</div>
@@ -194,8 +195,8 @@ const Home = () => {
       {/* Suggestions for Discovery */}
 
       <h1 className='text-center mt-5'>Suggestions for discovery</h1>
-      <div>
-        <SliderComponent>
+      <div className='mt-5'>
+        <SliderComponent slides={4}>
           {location.map(({ label }) => (
             <LocationSlide label={label} />
           ))}
@@ -204,9 +205,11 @@ const Home = () => {
 
       {/* benefits of joining us */}
 
-      <h1 className='text-center mt-5'>See some benefit of joining us</h1>
+      <h1 style={{ marginTop: '100px' }} className='text-center'>
+        See some benefit of joining us
+      </h1>
 
-      <div>
+      <div className='mt-5'>
         <Row className='d-flex align-items-center px-sm-5'>
           <Col
             md={6}
@@ -245,10 +248,12 @@ const Home = () => {
 
       {/* Explore to Destinations */}
 
-      <h1 className='mt-5 text-center'>Explore to destination</h1>
+      <h1 style={{ marginTop: '100px' }} className='text-center'>
+        Explore to destination
+      </h1>
 
-      <div>
-        <SliderComponent infinite={false}>
+      <div className='mt-5'>
+        <SliderComponent slides={3} infinite={false}>
           {tours?.map((tour) => (
             <TourCard tour={tour} hideFavourite={true} />
           ))}
@@ -257,7 +262,7 @@ const Home = () => {
 
       {/* How it works */}
 
-      <div style={{ background: '#E5EDF3' }} className='py-4 mt-5 rounded'>
+      <div style={{ background: '#E5EDF3', marginTop: '150px' }} className='py-4 rounded'>
         <h1 className='text-center' style={{ color: 'black' }}>
           How it works
         </h1>
@@ -299,8 +304,10 @@ const Home = () => {
       </div>
 
       {/* Testimonials */}
-      <h1 className='mt-5 text-center'>Our Testimonials</h1>
-      <div>
+      <h1 style={{ marginTop: '150px' }} className='text-center'>
+        Our Testimonials
+      </h1>
+      <div className='mt-5'>
         <SliderComponent>
           {Array(5)
             .fill(0)
@@ -311,7 +318,10 @@ const Home = () => {
       </div>
 
       {/* News letter */}
-      <div style={{ background: `url(${BannerImage})` }} className='mt-5 py-4 rounded shadow'>
+      <div
+        style={{ background: `url(${BannerImage})`, marginTop: '150px' }}
+        className='py-4 rounded shadow'
+      >
         <h1 className='text-center' style={{ color: 'white' }}>
           Subscribe to our NewsLetter!
         </h1>

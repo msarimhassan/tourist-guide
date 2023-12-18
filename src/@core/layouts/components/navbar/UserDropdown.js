@@ -23,6 +23,7 @@ import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from
 // ** Default Avatar Image
 import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg';
 import { useAuth } from '../../../../hooks';
+import Logo from '@src/assets/images/logo/logo.png';
 
 const UserDropdown = () => {
   const { currentUser } = useAuth();
@@ -78,7 +79,7 @@ const UserDropdown = () => {
           <span className='user-name fw-bold'>{currentUser?.name}</span>
           <span className='user-status'>{currentUser?.role}</span>
         </div>
-        <Avatar img={defaultAvatar} imgHeight='40' imgWidth='40' status='online' />
+        <Avatar img={Logo} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu end>
         {currentUser?.role == 'user' ? (

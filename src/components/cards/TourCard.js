@@ -16,7 +16,7 @@ const TourCard = ({ tour, addFavourite, isFavourite, removeFavourite, hideFavour
     <Card
       className='m-1'
       style={{
-        width: '25rem',
+        width: '30rem',
       }}
       onClick={() => navigate(`/tour/tour-packages/${tour?._id}`)}
     >

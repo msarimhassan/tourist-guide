@@ -31,7 +31,11 @@ html[dir='rtl'] {
 
   // Horizontal menu
   .horizontal-menu .header-navbar.navbar-horizontal .dropdown-menu .dropdown-toggle::after {
-    background-image: url(str-replace(str-replace($chevron-left, 'currentColor', $body-color), '#', '%23'));
+    background-image: url(str-replace(
+      str-replace($chevron-left, 'currentColor', #f97150),
+      '#',
+      '%23'
+    ));
   }
 
   // Dropdown RTL Changes

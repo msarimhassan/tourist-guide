@@ -6,7 +6,7 @@ import AppLogo from '@src/assets/images/logo/footer-logo.png';
 const Footer = () => {
   const { FA, BS } = Icons;
   return (
-    <div style={{ background: '#006B83', color: 'white' }}>
+    <div className='rounded' style={{ background: '#0F3950', color: 'white' }}>
       <div className='d-flex align-items-center justify-content-center flex-column pt-2'>
         <img style={{ width: '220px', height: '100px' }} src={AppLogo} />
         <p className='text-center'>
