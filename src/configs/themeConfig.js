@@ -1,5 +1,6 @@
 // Logo Import
 import logo from '@src/assets/images/logo/logo.svg';
+import appLogo from '@src/assets/images/logo/logo.png';
 
 // You can customize the template with the help of this file
 
@@ -7,7 +8,7 @@ import logo from '@src/assets/images/logo/logo.svg';
 const themeConfig = {
   app: {
     appName: 'Tour Guide',
-    appLogoImage: logo,
+    appLogoImage: appLogo,
   },
   layout: {
     isRTL: false,

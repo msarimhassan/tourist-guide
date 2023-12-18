@@ -7,7 +7,7 @@ import BannerImage from '../../assets/images/banners/banner-3.png';
 import Benefitbanner from '../../assets/images/banners/benefit.png';
 
 import Nature from '../../assets/images/cards/Card-1.jpeg';
-import { TourCard, TestimonialCard, Banner } from '../../components';
+import { TourCard, TestimonialCard, Banner, Carousel } from '../../components';
 import { useState } from 'react';
 
 const benefits = [
@@ -61,8 +61,6 @@ const works = [
   },
 ];
 
-
-
 const location = [
   {
     label: 'Hunza',
@@ -98,7 +96,7 @@ const Home = () => {
   return (
     <div>
       {/* Banner */}
-      <div className='banner'>
+      {/* <div className='banner'>
         <div className='banner-content d-flex align-items-center flex-column'>
           <h1 style={{ color: 'black' }} className='fw-bolder'>
             Discover A Beautiful Place With Us
@@ -108,12 +106,16 @@ const Home = () => {
             Explore Now
           </Button>
         </div>
+      </div> */}
+
+      <div className='w-100'>
+        <Carousel />
       </div>
 
       {/* Search Filter */}
 
-      <div style={{ marginTop: '-80px' }} className='d-flex justify-content-center'>
-        <Card className='border w-75 p-2 p-sm-5' style={{ background: '#E5EDF3' }}>
+      <div style={{ marginTop: '-60px' }} className='d-flex justify-content-center'>
+        <Card className='w-75 p-2 px-sm-3 py-sm-2' style={{ background: '#0F3950' }}>
           <Row className='d-flex align-items-center justify-content-center'>
             <Col md={3} className='mt-2 mt-sm-0'>
               <Select options={location} placeholder='Destination' />

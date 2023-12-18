@@ -11,6 +11,7 @@ import ServiceProviderSignup from './forms/ServiceProviderSignup';
 import HotelAdminSignup from './forms/HotelAdminSignup';
 import UserSignup from './forms/Signup';
 import Loader from './Loader';
+import Carousel from './carousel';
 
 export {
   TourCard,
@@ -26,4 +27,5 @@ export {
   HotelAdminSignup,
   UserSignup,
   Loader,
+  Carousel,
 };

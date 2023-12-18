@@ -24,7 +24,8 @@ $gray-800: #1e1e1e !default; // $gray-dark
 $gray-900: #2a2e30 !default;
 $black: #22292f !default; // 231f48 22292f
 
-$purple: #7367f0 !default; //$primary
+// $purple: #7367f0 !default; //$primary
+$purple: #004778 !default;
 $green: #28c76f !default; //$success
 $blue: #00cfe8 !default; //$info
 $orange: #ff9f43 !default; //$warning
@@ -54,7 +55,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1440px // Custom xxl size
+  xxl: 1440px // Custom xxl size,
 ) !default;
 
 $container-max-widths: (
@@ -63,7 +64,7 @@ $container-max-widths: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1440px // Custom xxl size
+  xxl: 1440px // Custom xxl size,
 ) !default;
 // scss-docs-end container-max-widths
 
@@ -75,29 +76,29 @@ $spacers: map-merge(
   (
     0: 0,
     25: (
-      $spacer * 0.25
+      $spacer * 0.25,
     ),
     50: (
-      $spacer * 0.5
+      $spacer * 0.5,
     ),
     75: (
-      $spacer * 0.75
+      $spacer * 0.75,
     ),
     1: (
-      $spacer
+      $spacer,
     ),
     2: (
-      $spacer * 1.5
+      $spacer * 1.5,
     ),
     3: (
-      $spacer * 3
+      $spacer * 3,
     ),
     4: (
-      $spacer * 3.5
+      $spacer * 3.5,
     ),
     5: (
-      $spacer * 4
-    )
+      $spacer * 4,
+    ),
   ),
   $spacers
 );
@@ -177,7 +178,7 @@ $display-font-sizes: (
   3: 4.5rem,
   4: 3.5rem,
   5: 3rem,
-  6: 2.5rem
+  6: 2.5rem,
 ) !default;
 
 $display-font-weight: $font-weight-normal !default;
@@ -251,8 +252,8 @@ $btn-border-radius: 0.358rem !default;
 $btn-border-radius-lg: $btn-border-radius !default;
 $btn-border-radius-sm: $btn-border-radius !default;
 
-$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-  box-shadow 0.15s ease-in-out, background 0s, border 0s !default;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s !default;
 
 // Forms
 $form-label-margin-bottom: 0.2857rem !default;
@@ -372,13 +373,13 @@ $form-validation-states: (
   'valid': (
     'color': $form-feedback-valid-color,
     'icon': $form-feedback-icon-valid,
-    'tooltip-color': $white
+    'tooltip-color': $white,
   ),
   'invalid': (
     'color': $form-feedback-invalid-color,
     'icon': $form-feedback-icon-invalid,
-    'tooltip-color': $white
-  )
+    'tooltip-color': $white,
+  ),
 ) !default;
 
 // Nav tabs
