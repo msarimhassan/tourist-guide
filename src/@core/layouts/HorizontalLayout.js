@@ -1,39 +1,39 @@
 // ** React Imports
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 // ** Store & Actions
-import { useSelector, useDispatch } from "react-redux";
-import { handleMenuHidden, handleContentWidth } from "@store/layout";
+import { useSelector, useDispatch } from 'react-redux';
+import { handleMenuHidden, handleContentWidth } from '@store/layout';
 
 // ** Third Party Components
-import classnames from "classnames";
-import { ArrowUp } from "react-feather";
+import classnames from 'classnames';
+import { ArrowUp } from 'react-feather';
 
 // ** Reactstrap Imports
-import { Navbar, NavItem, Button } from "reactstrap";
+import { Navbar, NavItem, Button } from 'reactstrap';
 
 // ** Configs
-import themeConfig from "@configs/themeConfig";
+import themeConfig from '@configs/themeConfig';
 
 // ** Custom Components
 
-import Customizer from "@components/customizer";
-import ScrollToTop from "@components/scrolltop";
-import NavbarComponent from "./components/navbar";
-import FooterComponent from "./components/footer";
-import MenuComponent from "./components/menu/horizontal-menu";
+import Customizer from '@components/customizer';
+import ScrollToTop from '@components/scrolltop';
+import NavbarComponent from './components/navbar';
+import FooterComponent from './components/footer';
+import MenuComponent from './components/menu/horizontal-menu';
 
 // ** Custom Hooks
-import { useRTL } from "@hooks/useRTL";
-import { useSkin } from "@hooks/useSkin";
-import { useLayout } from "@hooks/useLayout";
-import { useNavbarType } from "@hooks/useNavbarType";
-import { useFooterType } from "@hooks/useFooterType";
-import { useNavbarColor } from "@hooks/useNavbarColor";
+import { useRTL } from '@hooks/useRTL';
+import { useSkin } from '@hooks/useSkin';
+import { useLayout } from '@hooks/useLayout';
+import { useNavbarType } from '@hooks/useNavbarType';
+import { useFooterType } from '@hooks/useFooterType';
+import { useNavbarColor } from '@hooks/useNavbarColor';
 
 // ** Styles
-import "@styles/base/core/menu/menu-types/horizontal-menu.scss";
+import '@styles/base/core/menu/menu-types/horizontal-menu.scss';
 
 const HorizontalLayout = (props) => {
   // ** Props
@@ -74,7 +74,7 @@ const HorizontalLayout = (props) => {
   //** ComponentDidMount
   useEffect(() => {
     setIsMounted(true);
-    window.addEventListener("scroll", function () {
+    window.addEventListener('scroll', function () {
       if (window.pageYOffset > 65 && navbarScrolled === false) {
         setNavbarScrolled(true);
       }
@@ -87,25 +87,23 @@ const HorizontalLayout = (props) => {
 
   // ** Vars
   const footerClasses = {
-    static: "footer-static",
-    sticky: "footer-fixed",
-    hidden: "footer-hidden",
+    static: 'footer-static',
+    sticky: 'footer-fixed',
+    hidden: 'footer-hidden',
   };
 
   const navbarWrapperClasses = {
-    floating: "navbar-floating",
-    sticky: "navbar-sticky",
-    static: "navbar-static",
+    floating: 'navbar-floating',
+    sticky: 'navbar-sticky',
+    static: 'navbar-static',
   };
 
   const navbarClasses = {
-    floating:
-      contentWidth === "boxed" ? "floating-nav container-xxl" : "floating-nav",
-    sticky: "fixed-top",
+    floating: contentWidth === 'boxed' ? 'floating-nav container-xxl' : 'floating-nav',
+    sticky: 'fixed-top',
   };
 
-  const bgColorCondition =
-    navbarColor !== "" && navbarColor !== "light" && navbarColor !== "white";
+  const bgColorCondition = navbarColor !== '' && navbarColor !== 'light' && navbarColor !== 'white';
 
   if (!isMounted) {
     return null;
@@ -115,60 +113,53 @@ const HorizontalLayout = (props) => {
     <div
       className={classnames(
         `wrapper horizontal-layout horizontal-menu ${
-          navbarWrapperClasses[navbarType] || "navbar-floating"
-        } ${footerClasses[footerType] || "footer-static"} menu-expanded`
+          navbarWrapperClasses[navbarType] || 'navbar-floating'
+        } ${footerClasses[footerType] || 'footer-static'} menu-expanded`
       )}
-      {...(isHidden ? { "data-col": "1-column" } : {})}
+      {...(isHidden ? { 'data-col': '1-column' } : {})}
     >
       <Navbar
-        expand="lg"
+        expand='lg'
         container={false}
         className={classnames(
-          "header-navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center",
+          'header-navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center',
           {
-            "navbar-scrolled": navbarScrolled,
+            'navbar-scrolled': navbarScrolled,
           }
         )}
       >
         {!navbar && (
-          <div className="navbar-header d-xl-block d-none">
-            <ul className="nav navbar-nav">
+          <div className='navbar-header d-xl-block d-none'>
+            <ul className='nav navbar-nav'>
               <NavItem>
-                <Link to="/" className="navbar-brand">
-                  <span className="brand-logo">
-                    <img src={themeConfig.app.appLogoImage} alt="logo" />
+                <Link to='/' className='navbar-brand'>
+                  <span>
+                    <img style={{ width: '180px' }} src={themeConfig.app.appLogoImage} alt='logo' />
                   </span>
-                  <h2 className="brand-text mb-0">{themeConfig.app.appName}</h2>
+                  {/* <h2 className="brand-text mb-0">{themeConfig.app.appName}</h2> */}
                 </Link>
               </NavItem>
             </ul>
           </div>
         )}
 
-        <div className="navbar-container d-flex content">
-          {navbar ? (
-            navbar({ skin, setSkin })
-          ) : (
-            <NavbarComponent skin={skin} setSkin={setSkin} />
-          )}
+        <div className='navbar-container d-flex content'>
+          {navbar ? navbar({ skin, setSkin }) : <NavbarComponent skin={skin} setSkin={setSkin} />}
         </div>
       </Navbar>
       {!isHidden ? (
-        <div className="horizontal-menu-wrapper">
+        <div className='horizontal-menu-wrapper'>
           <Navbar
-            tag="div"
-            expand="sm"
-            light={skin !== "dark"}
-            dark={skin === "dark" || bgColorCondition}
-            className={classnames(
-              `header-navbar navbar-horizontal navbar-shadow menu-border`,
-              {
-                [navbarClasses[navbarType]]: navbarType !== "static",
-                "floating-nav":
-                  (!navbarClasses[navbarType] && navbarType !== "static") ||
-                  navbarType === "floating",
-              }
-            )}
+            tag='div'
+            expand='sm'
+            light={skin !== 'dark'}
+            dark={skin === 'dark' || bgColorCondition}
+            className={classnames(`header-navbar navbar-horizontal navbar-shadow menu-border`, {
+              [navbarClasses[navbarType]]: navbarType !== 'static',
+              'floating-nav':
+                (!navbarClasses[navbarType] && navbarType !== 'static') ||
+                navbarType === 'floating',
+            })}
           >
             {menu ? (
               menu({ menuData, routerProps, currentActiveItem })
@@ -204,26 +195,23 @@ const HorizontalLayout = (props) => {
       ) : null}
       <footer
         className={classnames(
-          `footer footer-light ${footerClasses[footerType] || "footer-static"}`,
+          `footer footer-light ${footerClasses[footerType] || 'footer-static'}`,
           {
-            "d-none": footerType === "hidden",
+            'd-none': footerType === 'hidden',
           }
         )}
       >
         {footer ? (
           footer
         ) : (
-          <FooterComponent
-            footerType={footerType}
-            footerClasses={footerClasses}
-          />
+          <FooterComponent footerType={footerType} footerClasses={footerClasses} />
         )}
       </footer>
 
       {themeConfig.layout.scrollTop === true ? (
-        <div className="scroll-to-top">
-          <ScrollToTop showOffset={300} className="scroll-top d-block">
-            <Button className="btn-icon" color="primary">
+        <div className='scroll-to-top'>
+          <ScrollToTop showOffset={300} className='scroll-top d-block'>
+            <Button className='btn-icon' color='primary'>
               <ArrowUp size={14} />
             </Button>
           </ScrollToTop>
