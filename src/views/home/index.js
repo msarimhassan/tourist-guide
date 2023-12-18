@@ -5,6 +5,8 @@ import Select from 'react-select';
 import Avatar from '@components/avatar';
 import BannerImage from '../../assets/images/banners/banner-3.png';
 import Benefitbanner from '../../assets/images/banners/benefit.png';
+import { Network, Url } from '../../apiConfiguration';
+import { useLoader, useToast } from '../../hooks';
 
 import {
   TourCard,
@@ -14,7 +16,7 @@ import {
   SliderComponent,
   LocationSlide,
 } from '../../components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const benefits = [
   {
@@ -98,6 +100,21 @@ const Home = () => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [destination, setDestination] = useState();
+  const { setLoader } = useLoader();
+  const [tours, setTours] = useState([]);
+  const { showErrorMessage, showSuccessMessage } = useToast();
+
+  const getDashboardData = async () => {
+    setLoader(true);
+    const response = await Network.get(Url.dashboardTours);
+    setLoader(false);
+    if (!response.ok) return showErrorMessage(response.data);
+    setTours(response.data);
+  };
+
+  useEffect(() => {
+    getDashboardData();
+  }, []);
 
   return (
     <div>
@@ -209,12 +226,12 @@ const Home = () => {
 
       <h1 className='mt-5 text-center'>Explore to destination</h1>
 
-      <div className='d-flex flex-wrap justify-content-center align-items-center'>
-        {Array(4)
-          .fill(0)
-          .map(() => (
-            <TourCard />
+      <div>
+        <SliderComponent infinite={false}>
+          {tours?.map((tour) => (
+            <TourCard tour={tour} hideFavourite={true} />
           ))}
+        </SliderComponent>
       </div>
 
       {/* How it works */}

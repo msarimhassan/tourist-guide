@@ -8,7 +8,7 @@ import { Heart } from 'react-feather';
 import { getImageRoute } from '../../utility/Utils';
 import { useNavigate } from 'react-router-dom';
 
-const TourCard = ({ tour, addFavourite, isFavourite, removeFavourite }) => {
+const TourCard = ({ tour, addFavourite, isFavourite, removeFavourite, hideFavourite = false }) => {
   const navigate = useNavigate();
   const { FA } = Icons;
 
@@ -34,26 +34,32 @@ const TourCard = ({ tour, addFavourite, isFavourite, removeFavourite }) => {
         Hot deal
       </div>
 
-      <div style={{ position: 'absolute', right: 10, top: 10, color: 'white' }}>
-        {isFavourite ? (
-          <FA.FaHeart
-            size={20}
-            onClick={(e) => {
-              e.stopPropagation();
-              removeFavourite(tour?._id);
-            }}
-          />
-        ) : (
-          <Heart
-            size={20}
-            onClick={(e) => {
-              e.stopPropagation();
-              addFavourite(tour?._id);
-            }}
-          />
-        )}
-      </div>
-      <img alt='Sample' src={getImageRoute(tour?.banner)} />
+      {!hideFavourite ? (
+        <div style={{ position: 'absolute', right: 10, top: 10, color: 'white' }}>
+          {isFavourite ? (
+            <FA.FaHeart
+              size={20}
+              onClick={(e) => {
+                e.stopPropagation();
+                removeFavourite(tour?._id);
+              }}
+            />
+          ) : (
+            <Heart
+              size={20}
+              onClick={(e) => {
+                e.stopPropagation();
+                addFavourite(tour?._id);
+              }}
+            />
+          )}
+        </div>
+      ) : null}
+      <img
+        alt='Sample'
+        style={{ height: '350px', width: '100%', objectFit: 'cover' }}
+        src={getImageRoute(tour?.banner)}
+      />
       <CardBody>
         <CardTitle style={{ cursor: 'pointer' }} tag='h5'>
           {tour?.title}

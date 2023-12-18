@@ -17,6 +17,9 @@ const Url = {
   getSingleTour: (id) => `tours/get/${id}`,
   updateTour: (id) => `tours/update/${id}`,
 
+  //dashboard tours
+  dashboardTours: 'tours/get-dashboard-tour',
+
   // userPanel
   getCompanies: 'companies/list',
   getTourByCompanyId: (companyId) => `tours/get-tour-by-company-id/${companyId}`,

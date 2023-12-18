@@ -2,11 +2,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const SliderComponent = ({ children, slides = 3, infinite = true }) => {
+const TourSlider = () => {
   const settings = {
     dots: true,
     arrows: false,
-    infinite: infinite,
+    infinite: true,
     slidesToShow: slides,
     autoplay: true,
     autoplaySpeed: 1000,
@@ -46,8 +46,4 @@ const SliderComponent = ({ children, slides = 3, infinite = true }) => {
       },
     ],
   };
-
-  return <Slider {...settings}>{children}</Slider>;
 };
-
-export default SliderComponent;
