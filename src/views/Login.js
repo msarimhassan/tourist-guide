@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // ** Custom Components
 import InputPasswordToggle from '@components/input-password-toggle';
+import Logo from '../assets/images/logo/logo.png';
 
 // ** Reactstrap Imports
 import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap';
@@ -91,9 +92,7 @@ const Login = () => {
     <div className='auth-wrapper auth-cover'>
       <Row className='auth-inner m-0'>
         <Link className='brand-logo' to='/' onClick={(e) => e.preventDefault()}>
-          <h2 style={{ color: '#317EA7' }} className='brand-text ms-1'>
-            Tourist Guide
-          </h2>
+          <img style={{ width: '250px' }} src={Logo} />
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5 bg-white' lg='8' sm='12'>
           <div className='w-100  d-lg-flex align-items-center justify-content-center px-5'>
