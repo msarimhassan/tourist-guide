@@ -1,18 +1,23 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import banner from '../../assets/images/banners/appBanner1.jpg';
+import banner1 from '../../assets/images/banners/appBanner1.jpg';
 import banner2 from '../../assets/images/banners/appBanner2.jpg';
+import banner3 from '../../assets/images/banners/appBanner3.jpg';
 import DynamicBanner from '../DynamicBanner';
 
 const Carousel = () => {
   const slides = [
     {
-      image: banner,
+      image: banner1,
       caption: 'Discover A beautiful Place With US',
     },
     {
       image: banner2,
+      caption: 'Discover A beautiful Place With US',
+    },
+    {
+      image: banner3,
       caption: 'Discover A beautiful Place With US',
     },
   ];
