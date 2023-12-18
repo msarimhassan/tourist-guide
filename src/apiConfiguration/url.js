@@ -20,6 +20,9 @@ const Url = {
   //dashboard tours
   dashboardTours: 'tours/get-dashboard-tour',
 
+  //home page search bar
+  search: 'tours/search',
+
   // userPanel
   getCompanies: 'companies/list',
   getTourByCompanyId: (companyId) => `tours/get-tour-by-company-id/${companyId}`,

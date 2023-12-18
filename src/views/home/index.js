@@ -7,6 +7,7 @@ import BannerImage from '../../assets/images/banners/banner-3.png';
 import Benefitbanner from '../../assets/images/banners/benefit.png';
 import { Network, Url } from '../../apiConfiguration';
 import { useLoader, useToast } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
 import {
   TourCard,
@@ -97,12 +98,23 @@ const location = [
 ];
 
 const Home = () => {
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
-  const [destination, setDestination] = useState();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [destination, setDestination] = useState(null);
   const { setLoader } = useLoader();
   const [tours, setTours] = useState([]);
   const { showErrorMessage, showSuccessMessage } = useToast();
+  const navigate = useNavigate();
+
+  const search = () => {
+    navigate('/search-tours', {
+      state: {
+        destination,
+        startDate,
+        endDate,
+      },
+    });
+  };
 
   const getDashboardData = async () => {
     setLoader(true);
@@ -141,10 +153,16 @@ const Home = () => {
         <Card className='w-75 p-2 px-sm-3 py-sm-2' style={{ background: '#0F3950' }}>
           <Row className='d-flex align-items-center justify-content-center'>
             <Col md={3} className='mt-2 mt-sm-0'>
-              <Select options={location} placeholder='Destination' />
+              <Select
+                options={location}
+                onChange={({ value }) => setDestination(value)}
+                placeholder='Destination'
+              />
             </Col>
             <Col md={3} className='mt-2 mt-sm-0'>
               <Flatpickr
+                value={startDate}
+                onChange={(value) => setStartDate(value)}
                 style={{ background: 'white' }}
                 className='form-control'
                 placeholder='Start Date'
@@ -152,6 +170,8 @@ const Home = () => {
             </Col>
             <Col md={3} className='mt-2 mt-sm-0'>
               <Flatpickr
+                value={endDate}
+                onChange={(value) => setEndDate(value)}
                 style={{ background: 'white' }}
                 className='form-control'
                 placeholder='End Date'
@@ -161,6 +181,7 @@ const Home = () => {
               <Button
                 className='w-100 d-flex justify-content-center align-items-center'
                 color='primary'
+                onClick={() => search()}
               >
                 <div>Search</div>
                 <Search className='ms-1' size={20} />
@@ -279,12 +300,14 @@ const Home = () => {
 
       {/* Testimonials */}
       <h1 className='mt-5 text-center'>Our Testimonials</h1>
-      <div className='d-flex justify-content-center flex-wrap align-items-center'>
-        {Array(3)
-          .fill(0)
-          .map((key) => {
-            return <TestimonialCard key={key} />;
-          })}
+      <div>
+        <SliderComponent>
+          {Array(5)
+            .fill(0)
+            .map((key) => {
+              return <TestimonialCard key={key} />;
+            })}
+        </SliderComponent>
       </div>
 
       {/* News letter */}
