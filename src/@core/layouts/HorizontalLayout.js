@@ -211,7 +211,11 @@ const HorizontalLayout = (props) => {
       {themeConfig.layout.scrollTop === true ? (
         <div className='scroll-to-top'>
           <ScrollToTop showOffset={300} className='scroll-top d-block'>
-            <Button className='btn-icon' color='primary'>
+            <Button
+              className='btn-icon'
+              color='#F97150'
+              style={{ background: '#F97150', zIndex: 1, color: 'white' }}
+            >
               <ArrowUp size={14} />
             </Button>
           </ScrollToTop>
