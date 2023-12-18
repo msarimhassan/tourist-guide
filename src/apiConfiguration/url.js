@@ -54,8 +54,7 @@ const Url = {
   removeFavourite: (tourId) => `tour-favourites/delete/${tourId}`,
 
   // search tours
-  searchTours: (start_date, end_date, location) =>
-    `tours/search?start_date=${start_date}&end_date=${end_date}&location=${location}`,
+  searchTours: 'tours/search',
 
   //update app user
 

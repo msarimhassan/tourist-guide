@@ -110,8 +110,8 @@ const Home = () => {
     navigate('/search-tours', {
       state: {
         destination,
-        startDate,
-        endDate,
+        startDate: startDate && startDate[0],
+        endDate: endDate && endDate[0],
       },
     });
   };
@@ -253,7 +253,7 @@ const Home = () => {
       </h1>
 
       <div className='mt-5'>
-        <SliderComponent slides={3} infinite={false}>
+        <SliderComponent slides={3} responsiveSlides={1} infinite={false}>
           {tours?.map((tour) => (
             <TourCard tour={tour} hideFavourite={true} />
           ))}

@@ -3,7 +3,7 @@ import Avatar from '@components/avatar';
 const TestimonialCard = () => {
   return (
     <div className='rounded shadow m-1' style={{ width: '400px', height: '300px' }}>
-      <div className='d-flex align-items-center mt-2 ps-2'>
+      <div className='d-flex align-items-center mt-2 ps-2 pt-2'>
         <Avatar
           color='light-warning'
           style={{

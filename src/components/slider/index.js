@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const SliderComponent = ({ children, slides = 3, infinite = true }) => {
+const SliderComponent = ({ children, slides = 3, responsiveSlides = 2, infinite = true }) => {
   const settings = {
     dots: true,
     arrows: false,
@@ -23,8 +23,8 @@ const SliderComponent = ({ children, slides = 3, infinite = true }) => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: responsiveSlides,
+          slidesToScroll: responsiveSlides,
           infinite: true,
           dots: true,
         },
@@ -32,16 +32,16 @@ const SliderComponent = ({ children, slides = 3, infinite = true }) => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: responsiveSlides,
+          slidesToScroll: responsiveSlides,
           initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: responsiveSlides,
+          slidesToScroll: responsiveSlides,
         },
       },
     ],
