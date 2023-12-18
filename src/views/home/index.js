@@ -169,14 +169,14 @@ const Home = () => {
       <h1 className='text-center mt-5'>See some benefit of joining us</h1>
 
       <div>
-        <Row className='d-flex align-items-center'>
+        <Row className='d-flex align-items-center px-sm-5'>
           <Col
             md={6}
-            className='d-flex justify-content-center flex-column align-content-center mt-2'
+            className='d-flex justify-content-center flex-column align-content-center mt-2 '
           >
             {benefits?.map(({ id, color, title, content }) => {
               return (
-                <div className='d-flex align-items-center justify-content-center' key={id}>
+                <div className='d-flex align-items-center justify-content-center ' key={id}>
                   <div style={{ height: '100px', width: '100px' }}>
                     <Avatar
                       color={color}
@@ -199,7 +199,7 @@ const Home = () => {
               );
             })}
           </Col>
-          <Col className='d-flex justify-content-center mt-2' md={6}>
+          <Col className='d-flex justify-content-center mt-2 ' md={6}>
             <img src={Benefitbanner} height='300px' />
           </Col>
         </Row>
