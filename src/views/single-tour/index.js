@@ -1,6 +1,6 @@
 import { Banner } from '../../components';
 import { Row, Col, Card, Button, CardBody, Input, Label } from 'reactstrap';
-import { Calendar } from 'react-feather';
+import { Calendar, MapPin } from 'react-feather';
 import { Network, Url } from '../../apiConfiguration';
 import { useLoader, useToast } from '../../hooks';
 import { useEffect, useState } from 'react';
@@ -28,8 +28,6 @@ const SingleTour = () => {
   const navigate = useNavigate();
 
   const storedTours = useSelector((state) => state.tour.tours);
-
-  console.log({ storedTours });
 
   const [price, setPrice] = useState([]);
   const [originalPrice, setOriginalPrice] = useState(0);
@@ -74,32 +72,45 @@ const SingleTour = () => {
       <Banner text={tour?.title} />
       <Row className='mt-4'>
         <Col md={8}>
-          <div style={{ height: '100px', width: '300px' }}>
-            <div className='text-center'>
-              <Calendar size={40} />
-            </div>
-            <div className='d-flex rounded d-flex justify-content-between align-items-center'>
-              <div>
-                <h5> Starting Date </h5>
-                <h5>{dayjs(tour?.start_date).format('DD-MM-YYYY')}</h5>
+          <Row>
+            <Col md={3} className='d-flex align-items-center'>
+              <div
+                className='border d-flex align-items-center justify-content-center rounded p-1'
+                style={{ background: '#83B5D1', width: '50px', height: '50px' }}
+              >
+                <Calendar color='white' size={40} />
               </div>
-              <div>
-                <h5> Ending Date </h5>
-                <h5>{dayjs(tour?.end_date).format('DD-MM-YYYY')}</h5>
+              <div className='ms-1'>
+                <h6>Starting Date</h6>
+                <p>{dayjs(tour?.start_date).format('DD-MM-YYYY')}</p>
               </div>
-            </div>
-          </div>
+            </Col>
+            <Col md={3} className='d-flex align-items-center '>
+              <div
+                className='border d-flex align-items-center justify-content-center rounded p-1'
+                style={{ background: '#83B5D1', width: '50px', height: '50px' }}
+              >
+                <Calendar color='white' size={40} />
+              </div>
+              <div className='ms-1'>
+                <h6>Ending Date</h6>
+                <p>{dayjs(tour?.end_date).format('DD-MM-YYYY')}</p>
+              </div>
+            </Col>
+            <Col md={4} className='d-flex align-items-center'>
+              <div
+                className='border d-flex align-items-center justify-content-center rounded p-1'
+                style={{ background: '#83B5D1', width: '50px', height: '50px' }}
+              >
+                <MapPin color='white' size={40} />
+              </div>
+              <div className='ms-1'>
+                <h6>Location</h6>
+                <p>{tour?.location}</p>
+              </div>
+            </Col>
+          </Row>
 
-          {/* <div className='d-flex  justify-content-around'>
-            <div className='d-flex align-items-center'>
-              <h4>Availability :</h4>
-              <h4 className='ms-2'>June (1-20)</h4>
-            </div>
-            <div className='d-flex align-items-center'>
-              <h4>Time :</h4>
-              <h4 className='ms-2'>11:30pm</h4>
-            </div>
-          </div> */}
           <hr />
           <div>
             <h2>Tour Details</h2>
