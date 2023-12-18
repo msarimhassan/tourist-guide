@@ -8,7 +8,7 @@ import Logo from '../assets/images/logo/logo.png';
 
 // ** Reactstrap Imports
 import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap';
-import Cover from '../assets/images/pages/Login.jpg';
+import Cover from '../assets/images/pages/Login.jpeg';
 
 // ** Styles
 import '@styles/react/pages/page-authentication.scss';
@@ -89,96 +89,103 @@ const Login = () => {
   };
 
   return (
-    <div className='auth-wrapper auth-cover'>
-      <Row className='auth-inner m-0'>
-        <Link className='brand-logo' to='/' onClick={(e) => e.preventDefault()}>
-          <img style={{ width: '250px' }} src={Logo} />
+    <Row style={{ height: '100vh' }}>
+      <Col className='d-none d-lg-flex align-items-center p-0 bg-white' lg='8' sm='12'>
+        <Link
+          style={{ position: 'absolute', top: 0, left: 0 }}
+          className='brand-logo'
+          to='/'
+          onClick={(e) => e.preventDefault()}
+        >
+          <img style={{ width: '250px' }} src={Logo} alt='Logo' />
         </Link>
-        <Col className='d-none d-lg-flex align-items-center p-5 bg-white' lg='8' sm='12'>
-          <div className='w-100  d-lg-flex align-items-center justify-content-center '>
-            <img
-              className='img-fluid'
-              style={{ width: '100%', height: '100%' }}
-              src={Cover}
-              alt='Login Cover'
-            />
-          </div>
-        </Col>
-        <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
-          <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
-            <CardTitle tag='h2' className='fw-bold mb-1'>
-              Welcome to Tourist Guide 👋
-            </CardTitle>
-            <CardText className='mb-2'>
-              Please sign-in to your account and start the adventure
-            </CardText>
-            <Form className='auth-login-form mt-2' onSubmit={handleSubmit}>
-              <div className='mb-1'>
-                <Label className='form-label' for='login-email'>
-                  Email
+        <div className='w-100 h-100'>
+          <img
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={Cover}
+            alt='Login Cover'
+          />
+        </div>
+      </Col>
+      <Col
+        className='d-flex align-items-center justify-content-center px-2 px-5 p-lg-5'
+        lg='4'
+        sm='12'
+      >
+        <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
+          <CardTitle tag='h2' className='fw-bold mb-1'>
+            Welcome to Tourist Guide 👋
+          </CardTitle>
+          <CardText className='mb-2'>
+            Please sign-in to your account and start the adventure
+          </CardText>
+          <Form className='auth-login-form mt-2' onSubmit={handleSubmit}>
+            <div className='mb-1'>
+              <Label className='form-label' for='login-email'>
+                Email
+              </Label>
+              <Input
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type='email'
+                name='email'
+                id='login-email'
+                placeholder='john@example.com'
+                autoFocus
+              />
+              <ErrorMessage name='email' />
+            </div>
+            <div className='mb-1'>
+              <div className='d-flex justify-content-between'>
+                <Label className='form-label' for='login-password'>
+                  Password
                 </Label>
-                <Input
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  type='email'
-                  name='email'
-                  id='login-email'
-                  placeholder='john@example.com'
-                  autoFocus
-                />
-                <ErrorMessage name='email' />
-              </div>
-              <div className='mb-1'>
-                <div className='d-flex justify-content-between'>
-                  <Label className='form-label' for='login-password'>
-                    Password
-                  </Label>
-                  {/* <Link to='/forgot-password'>
+                {/* <Link to='/forgot-password'>
                     <small>Forgot Password?</small>
                   </Link> */}
-                </div>
-                <InputPasswordToggle
-                  name='password'
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className='input-group-merge'
-                  id='login-password'
-                />
-                <ErrorMessage name='password' />
               </div>
-              <div className='mb-1'>
-                <Label className='form-label' for='login-email'>
-                  Role
-                </Label>
-                <Select
-                  options={roles}
-                  onChange={({ value }) => {
-                    const event = {
-                      target: {
-                        name: 'role',
-                        value,
-                      },
-                    };
-                    handleChange(event);
-                  }}
-                  value={roles.filter((role) => role.value == values.role)}
-                />
-                <ErrorMessage name='role' />
-              </div>
+              <InputPasswordToggle
+                name='password'
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className='input-group-merge'
+                id='login-password'
+              />
+              <ErrorMessage name='password' />
+            </div>
+            <div className='mb-1'>
+              <Label className='form-label' for='login-email'>
+                Role
+              </Label>
+              <Select
+                options={roles}
+                onChange={({ value }) => {
+                  const event = {
+                    target: {
+                      name: 'role',
+                      value,
+                    },
+                  };
+                  handleChange(event);
+                }}
+                value={roles.filter((role) => role.value == values.role)}
+              />
+              <ErrorMessage name='role' />
+            </div>
 
-              <Button type='submit' color='primary' block>
-                Sign in
-              </Button>
-            </Form>
-            <p className='text-center mt-2'>
-              <span className='me-25'>New on our platform?</span>
-              <Link to='/register'>
-                <span>Create an account</span>
-              </Link>
-            </p>
-            {/* <div className='divider my-2'>
+            <Button type='submit' color='primary' block>
+              Sign in
+            </Button>
+          </Form>
+          <p className='text-center mt-2'>
+            <span className='me-25'>New on our platform?</span>
+            <Link to='/register'>
+              <span>Create an account</span>
+            </Link>
+          </p>
+          {/* <div className='divider my-2'>
               <div className='divider-text'>or</div>
             </div>
             <div className='auth-footer-btn d-flex justify-content-center'>
@@ -195,10 +202,9 @@ const Login = () => {
                 <GitHub size={14} />
               </Button>
             </div> */}
-          </Col>
         </Col>
-      </Row>
-    </div>
+      </Col>
+    </Row>
   );
 };
 
